@@ -11,7 +11,16 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@chia/src/*": ["src/*"],
+      "@chia/components/*": ["src/components/*"],
+      "@chia/api/*": ["src/api/*"],
+      "@chia/store/*": ["src/store/*"],
+      "@chia/utils/*": ["utils/*"],
+      "@chia/lib/*": ["lib/*"],
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
