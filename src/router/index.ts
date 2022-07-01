@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomePage from "../pages/HomePage.vue";
 import ProductPage from "../pages/ProductPage.vue";
 import NotFoundPage from "../pages/exceptions/404.vue";
 
@@ -7,13 +6,12 @@ import NotFoundPage from "../pages/exceptions/404.vue";
 const routes = [
     {
         path: "/",
-        name: 'HomePage',
-        component: HomePage
+        name: 'ProductPage',
+        component: ProductPage
     },
     {
         path: "/products",
-        name: 'ProductPage',
-        component: ProductPage
+        redirect: "/"
     },
     {
         path: "/:catchAll(.*)",
