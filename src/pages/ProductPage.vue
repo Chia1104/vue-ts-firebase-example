@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ProducsList from '@chia/src/components/pages/products/ProductsList.vue'
 
 </script>
