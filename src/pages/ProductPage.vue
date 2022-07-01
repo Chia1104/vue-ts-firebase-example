@@ -16,6 +16,7 @@ onMounted(async () => {
   <div class="container mx-auto">
     <main class="main w-full text-center">
       <ProducsList
+          :is-loading="products.isLoading"
           :products="products.data"
       />
     </main>
