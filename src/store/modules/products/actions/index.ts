@@ -4,8 +4,11 @@ export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
     try {
         const products = await getProducts();
-        if (products) context.commit('successGetProducts', products);
-        else context.commit('failGetProducts', 'Error getting products');
+        if(!products) {
+            context.commit('failGetProducts', 'No products found');
+            return;
+        }
+        context.commit('successGetProducts', products);
     } catch (e) {
         context.commit('failGetProducts', e);
     }

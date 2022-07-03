@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import ProductItem from './ProductItem.vue'
-import {Product} from "@chia/src/utils/types/product";
+import type {Product} from "@chia/src/utils/types/product";
 import ProductsLoader from "@chia/src/components/pages/products/ProductsLoader.vue";
 
 defineProps({

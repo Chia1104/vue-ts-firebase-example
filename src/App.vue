@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import NavMenu from "./components/globals/NavMenu.vue";
+import NavMenu from "@chia/src/components/globals/NavMenu.vue";
+import Footer from "@chia/src/components/globals/Footer.vue";
 
 </script>
 
@@ -8,6 +9,7 @@ import NavMenu from "./components/globals/NavMenu.vue";
     <NavMenu />
     <RouterView />
   </div>
+  <Footer />
 </template>
 
 <style>
