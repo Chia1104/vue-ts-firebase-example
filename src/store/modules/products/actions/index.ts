@@ -1,4 +1,4 @@
-import { getProducts } from "@chia/firebase/products/services/products.service";
+import { getProducts, getProduct } from "@chia/firebase/products/services/products.service";
 
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
@@ -11,5 +11,19 @@ export const getProductsAction = async (context: any) => {
         context.commit('successGetProducts', products);
     } catch (e) {
         context.commit('failGetProducts', e);
+    }
+}
+
+export const getProductAction = async (context: any, id: string) => {
+    context.commit('beginGetProduct');
+    try {
+        const product = await getProduct(id);
+        if(!product) {
+            context.commit('failGetProduct', 'No home found');
+            return;
+        }
+        context.commit('successGetProduct', product);
+    } catch (e) {
+        context.commit('failGetProduct', e);
     }
 }
