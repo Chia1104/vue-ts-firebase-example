@@ -14,12 +14,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@chia/src/*": ["src/*"],
-      "@chia/components/*": ["src/components/*"],
-      "@chia/api/*": ["src/api/*"],
-      "@chia/store/*": ["src/store/*"],
-      "@chia/utils/*": ["utils/*"],
-      "@chia/lib/*": ["lib/*"],
+      "@chia/*": ["src/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

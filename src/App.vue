@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NavMenu from "@chia/src/components/globals/NavMenu.vue";
-import Footer from "@chia/src/components/globals/Footer.vue";
+import NavMenu from "@chia/components/globals/NavMenu.vue";
+import Footer from "@chia/components/globals/Footer.vue";
 
 </script>
 

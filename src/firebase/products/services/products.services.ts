@@ -1,6 +1,6 @@
 import {query, orderBy, limit, getDocs, addDoc, collection} from 'firebase/firestore';
 import { firestore } from '../../config'
-import type { Product } from "@chia/src/utils/types/product";
+import type { Product } from "@chia/utils/types/product";
 import { dataToJSON } from "../repositories";
 
 export const addProduct = async(product: Product) => {
