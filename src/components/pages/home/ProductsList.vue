@@ -5,6 +5,10 @@ import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 
 defineProps({
+  isSuccess: {
+    type: Boolean,
+    default: false
+  },
   isLoading: Boolean,
   products: Array as () => Product[]
 })
@@ -14,6 +18,7 @@ defineProps({
 <template>
   <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
     <ProductItem
+      v-if="isSuccess"
       v-for="product in products"
       :key="product.id"
       :product-data="product"

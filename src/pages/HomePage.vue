@@ -18,6 +18,7 @@ onMounted(async () => {
     <main class="main w-full text-center">
       <Banner />
       <ProducsList
+          :is-success="products.isSuccess"
           :is-loading="products.isLoading"
           :products="products.data"
       />
