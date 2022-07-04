@@ -21,9 +21,9 @@ const isLocked = useScrollLock(el)
 
 <template>
   <Transition>
-    <div class="modal" v-if="isOpen" @click="handleClose" ref="el">
-      <slot></slot>
-    </div>
+<!--    <div class="modal" v-if="isOpen" @click="handleClose" ref="el">-->
+<!--      <slot></slot>-->
+<!--    </div>-->
   </Transition>
 </template>
 
