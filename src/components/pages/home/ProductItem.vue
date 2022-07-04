@@ -10,21 +10,26 @@ defineProps({
 </script>
 
 <template>
-  <router-link
-    :to="`/product/${productData.id}`"
-    class="w-full rounded-xl flex flex-col c-bg-secondary shadow-lg min-h-[465px] 2xl:min-h-[520px] group hover:-translate-y-1.5 duration-300 transition ease-in-out relative">
+  <div
+    class="w-full rounded-xl flex flex-col c-bg-secondary shadow-lg min-h-[400px] 2xl:min-h-[370px] group duration-300 transition ease-in-out relative">
     <div class="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-t-xl bg-gray-200 mb-3">
-      <img class="rounded group-hover:scale-[1.1] duration-300 transition ease-in-out object-cover" :src="productData.img_src" :alt="productData.name"/>
+      <img class="rounded group-hover:scale-[1.05] duration-300 transition ease-in-out object-cover" :src="productData.img_src" :alt="productData.name"/>
     </div>
-    <header class="subtitle mb-3 group-hover:text-secondary duration-300 transition ease-in-out line-clamp-2 leading-normal mx-5 text-start">
+    <router-link
+      :to="`/product/${productData.id}`"
+      class="subtitle mb-3 group-hover:text-secondary duration-300 transition ease-in-out line-clamp-2 leading-normal mx-5 text-start">
       {{ productData.name }}
-    </header>
+    </router-link>
     <p class="line-clamp-3 c-description leading-normal mb-3 mx-5 text-start">
       {{ productData.excerpt }}
     </p>
-    <footer class="mt-auto c-description mx-5 mb-3 self-start text-start">
-      <span class="text-xl">${{ productData.price }}</span><br>
-      {{ dayjs(productData.createdAt).format('MMMM D, YYYY') }}
+    <footer class="mt-auto c-description px-5 mb-3 flex w-full relative">
+      <span class="subtitle">${{ productData.price }}</span>
+      <button class="absolute bottom-0 right-0 mr-5 rounded-full p-1 shadow-2xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </button>
     </footer>
-  </router-link>
+  </div>
 </template>
