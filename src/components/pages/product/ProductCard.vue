@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineProps, reactive } from "vue";
 import type { Product } from "@chia/utils/types/product";
-import Modal from "@chia/components/globals/Modal.vue";
 
 defineProps({
   product: Object as () => Product,
@@ -49,14 +48,14 @@ const handleOpen = () => {
       </div>
     </div>
   </article>
-  <Modal
-      :isOpen="localState.isOpen"
-      :handleClose="handleClose"
-  >
-    <div class="w-full max-w-[1400px]">
-      <div class="aspect-w-1 aspect-h-1 hover:cursor-zoom-out">
-        <img :src="product.img_src" :alt="product.name" class="object-contain"/>
-      </div>
-    </div>
-  </Modal>
+<!--  <Modal-->
+<!--      :isOpen="localState.isOpen"-->
+<!--      :handleClose="handleClose"-->
+<!--  >-->
+<!--    <div class="w-full max-w-[1400px]">-->
+<!--      <div class="aspect-w-1 aspect-h-1 hover:cursor-zoom-out">-->
+<!--        <img :src="product.img_src" :alt="product.name" class="object-contain"/>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </Modal>-->
 </template>
