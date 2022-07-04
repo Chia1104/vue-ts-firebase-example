@@ -9,6 +9,8 @@
     "test:vitest": "vitest"
   },
   "dependencies": {
+    "@vueuse/components": "^8.7.5",
+    "@vueuse/core": "^8.7.5",
     "ant-design-vue": "^3.2.9",
     "dayjs": "^1.11.3",
     "firebase": "^9.8.3",

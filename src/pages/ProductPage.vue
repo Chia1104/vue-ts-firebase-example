@@ -7,10 +7,7 @@ const store = useStore()
 const product = computed(() => store.state.product.product)
 
 onMounted(async () => {
-  if(product.value.data.length === 0) {
-    console.log('fetching product')
-    await store.dispatch('getProductAction', {id: '3GL1iqz471kto6zWQspD'})
-  }
+  await store.dispatch('getProductAction', {id: '3GL1iqz471kto6zWQspD'})
 });
 
 </script>
