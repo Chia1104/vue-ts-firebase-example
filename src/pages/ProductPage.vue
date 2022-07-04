@@ -3,5 +3,9 @@
 </script>
 
 <template>
-  <h1>Product</h1>
+  <div class="c-container">
+    <main class="main w-full">
+
+    </main>
+  </div>
 </template>

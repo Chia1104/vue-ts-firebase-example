@@ -14,7 +14,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="c-container">
     <main class="main w-full text-center">
       <Banner />
       <ProducsList

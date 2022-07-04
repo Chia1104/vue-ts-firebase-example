@@ -1,4 +1,4 @@
-import {query, orderBy, limit, getDocs, addDoc, collection} from 'firebase/firestore';
+import {query, orderBy, limit, getDocs, addDoc, collection, getDoc, doc} from 'firebase/firestore';
 import { firestore } from '../../config'
 import type { Product } from "@chia/utils/types/product";
 import { dataToJSON } from "../repositories";
@@ -23,6 +23,17 @@ export const getProducts = async(): Promise<Product[]> => {
         )
 
         return (await getDocs(productsQuery)).docs.map(dataToJSON);
+    }
+    catch (e) {
+        console.error('Error getting doc', e)
+        throw e;
+    }
+}
+
+export const getProduct = async(id: string): Promise<Product> => {
+    try {
+        const ref = doc(firestore, `products/${id}`);
+        return dataToJSON(await getDoc(ref));
     }
     catch (e) {
         console.error('Error getting doc', e)

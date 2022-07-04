@@ -4,6 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "types": ["vitest/globals"]
   },
   "include": ["vite.config.ts"]
 }

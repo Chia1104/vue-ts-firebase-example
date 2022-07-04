@@ -1,4 +1,4 @@
-import { getProducts } from "@chia/firebase/products/services/products.services";
+import { getProducts } from "@chia/firebase/products/services/products.service";
 
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
