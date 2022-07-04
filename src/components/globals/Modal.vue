@@ -8,8 +8,9 @@ defineProps({
     default: false,
   },
   handleClose: {
-    type: Function,
-    default: () => {},
+    type: Function as () => void,
+    required: true,
+    payload: MouseEvent,
   },
 });
 
