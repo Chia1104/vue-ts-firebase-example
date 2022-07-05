@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../pages/HomePage.vue";
 import NotFoundPage from "../pages/exceptions/404.vue";
 import ProductPage from "../pages/ProductPage.vue";
+import ContactPage from "../pages/ContactPage.vue";
 
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
         props:true
     },
     {
+        path: "/contact",
+        name: 'ContactPage',
+        component: ContactPage
+    },
+    {
         path: "/:catchAll(.*)",
         component: NotFoundPage
     }
@@ -28,7 +34,10 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        return { top: 0 }
+    },
 });
 
 export default router;
