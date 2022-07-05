@@ -82,8 +82,8 @@ const handleSubmit = async () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5 min-h-[130px]"
         id="message"
         v-model="messageModel" />
-    <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
-    <div :data-sitekey="reCaptcha" class="g-recaptcha self-center"/>
+<!--    <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>-->
+<!--    <div :data-sitekey="reCaptcha" class="g-recaptcha self-center"/>-->
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center bg-gray-500">
       <span class="c-button-secondary transform group-hover:-translate-x-1 group-hover:-translate-y-1 text-base after:content-['_↗']">
          Send

@@ -1,4 +1,4 @@
-import { getProducts, getProduct, getMoreProducts } from "@chia/firebase/products/services";
+import { getProducts, getProduct, getMoreProducts } from "@chia/lib/firebase/products/services";
 import type { Product } from "@chia/utils/types/product";
 
 export const getProductsAction = async (context: any) => {

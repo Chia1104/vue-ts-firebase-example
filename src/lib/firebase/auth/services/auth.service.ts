@@ -20,11 +20,3 @@ export const getUser = () => {
     }
 }
 
-export const getUserObservable = () => {
-    try {
-        return auth.onAuthStateChanged;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-}

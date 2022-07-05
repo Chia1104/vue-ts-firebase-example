@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Drawer as AntDrawer, Popover as AntPopover } from "ant-design-vue";
+import { Drawer as AntDrawer } from "ant-design-vue";
 import { ref, computed } from "vue";
 import ShoppingIcon from "@chia/components/globals/ShoppingIcon.vue";
 import { useStore } from 'vuex';

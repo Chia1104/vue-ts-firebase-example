@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
-import { useScrollLock } from '@vueuse/core';
+import { defineProps } from "vue";
 
 interface Props {
   isOpen: boolean;
@@ -9,15 +8,11 @@ interface Props {
 
 defineProps<Props>();
 
-const el = ref<HTMLDivElement | null>(null)
-const isLocked = useScrollLock(el)
-
-
 </script>
 
 <template>
   <Transition>
-    <div class="modal" v-if="isOpen" @click="handleClose" ref="el">
+    <div class="modal" v-if="isOpen" @click="handleClose">
       <slot></slot>
     </div>
   </Transition>
