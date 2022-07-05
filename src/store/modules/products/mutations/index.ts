@@ -20,6 +20,25 @@ export const failGetProducts = (state: productStateType, payload: string) => {
     state.products.error = payload;
 }
 
+export const beginGetMoreProducts = (state: productStateType) => {
+    state.products.isLoading = true;
+}
+
+export const successGetMoreProducts = (state: productStateType, payload: Product[]) => {
+    state.products.isLoading = false;
+    state.products.isSuccess = true;
+    state.products.isError = false;
+    state.products.error = null;
+    state.products.data = [...state.products.data, ...payload];
+}
+
+export const failGetMoreProducts = (state: productStateType, payload: string) => {
+    state.products.isSuccess = false;
+    state.products.isLoading = false;
+    state.products.isError = true;
+    state.products.error = payload;
+}
+
 export const beginGetProduct = (state: productStateType) => {
     state.product.isLoading = true;
 }

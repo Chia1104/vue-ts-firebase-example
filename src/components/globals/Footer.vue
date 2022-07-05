@@ -20,7 +20,7 @@ const year = new Date().getFullYear();
             </router-link>
           </li>
           <li class="my-2">
-            <router-link to="/">
+            <router-link to="/contact">
               Contact Us
             </router-link>
           </li>
