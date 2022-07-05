@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, reactive } from "vue";
 import type { Product } from "@chia/utils/types/product";
+import Modal from "@chia/components/globals/Modal.vue";
 
 defineProps({
   product: Object as () => Product,
@@ -23,8 +24,8 @@ const handleOpen = () => {
 <template>
   <article class="w-full">
     <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-14">
-      <div class="rounded-xl aspect-w-1 aspect-h-1 overflow-hidden shadow-2xl hover:cursor-zoom-in" @click="handleOpen">
-        <img :src="product.img_src" :alt="product.name" class="object-cover"/>
+      <div class="rounded-xl aspect-w-1 aspect-h-1 overflow-hidden shadow-2xl hover:cursor-zoom-in group" @click="handleOpen">
+        <img :src="product.img_src" :alt="product.name" class="object-cover group-hover:scale-[1.05] transition ease-in-out duration-500"/>
       </div>
       <div>
         <h1 class="title mb-10">{{ product.name }}</h1>
@@ -48,14 +49,14 @@ const handleOpen = () => {
       </div>
     </div>
   </article>
-<!--  <Modal-->
-<!--      :isOpen="localState.isOpen"-->
-<!--      :handleClose="handleClose"-->
-<!--  >-->
-<!--    <div class="w-full max-w-[1400px]">-->
-<!--      <div class="aspect-w-1 aspect-h-1 hover:cursor-zoom-out">-->
-<!--        <img :src="product.img_src" :alt="product.name" class="object-contain"/>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </Modal>-->
+  <Modal
+      :is-open="localState.isOpen"
+      :handle-close="handleClose"
+  >
+    <div class="w-full max-w-[1400px]">
+      <div class="aspect-w-1 aspect-h-1 hover:cursor-zoom-out">
+        <img :src="product.img_src" :alt="product.name" class="object-contain"/>
+      </div>
+    </div>
+  </Modal>
 </template>
