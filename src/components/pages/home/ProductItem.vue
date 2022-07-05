@@ -3,9 +3,11 @@ import { defineProps } from 'vue'
 import type { Product } from "@chia/utils/types/product";
 import dayjs from "dayjs";
 
-defineProps({
-  productData: Object as () => Product
-})
+interface Props {
+  productData: Product;
+}
+
+defineProps<Props>();
 
 </script>
 

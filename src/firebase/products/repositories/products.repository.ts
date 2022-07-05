@@ -1,4 +1,4 @@
-import { DocumentData } from "@firebase/firestore-types";
+import type { DocumentData } from "@firebase/firestore-types";
 
 export const dataToJSON = (doc: DocumentData)  => {
     const data = doc.data();

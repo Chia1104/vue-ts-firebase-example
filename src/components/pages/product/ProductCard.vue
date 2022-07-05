@@ -3,9 +3,11 @@ import { defineProps, reactive } from "vue";
 import type { Product } from "@chia/utils/types/product";
 import Modal from "@chia/components/globals/Modal.vue";
 
-defineProps({
-  product: Object as () => Product,
-});
+interface Props {
+  product: Product;
+}
+
+defineProps<Props>();
 
 const localState = reactive({
   isOpen: false,

@@ -4,14 +4,13 @@ import ProductItem from './ProductItem.vue'
 import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 
-defineProps({
-  isSuccess: {
-    type: Boolean,
-    default: false
-  },
-  isLoading: Boolean,
-  products: Array as () => Product[]
-})
+interface Props {
+  products: Product[];
+  isLoading: boolean;
+  isSuccess: boolean;
+}
+
+defineProps<Props>();
 
 </script>
 
