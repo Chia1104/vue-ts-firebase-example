@@ -2,17 +2,10 @@
 import { defineProps, ref } from "vue";
 import { useScrollLock } from '@vueuse/core';
 
-defineProps({
-  isOpen: {
-    type: Boolean,
-    default: false,
-  },
-  handleClose: {
-    type: Function as () => void,
-    required: true,
-    payload: MouseEvent,
-  },
-});
+defineProps<{
+  isOpen: boolean;
+  handleClose: () => void;
+}>();
 
 const el = ref<HTMLDivElement | null>(null)
 const isLocked = useScrollLock(el)

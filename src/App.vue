@@ -7,11 +7,22 @@ import Footer from "@chia/components/globals/Footer.vue";
 <template>
   <div class="mt-20">
     <NavMenu />
-    <RouterView />
+    <router-view v-slot="{ Component, route }">
+      <Transition>
+        <Component :is="Component" :key="route.path" />
+      </Transition>
+    </router-view>
   </div>
   <Footer />
 </template>
 
-<style>
-
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
