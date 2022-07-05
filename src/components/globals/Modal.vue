@@ -2,10 +2,12 @@
 import { defineProps, ref } from "vue";
 import { useScrollLock } from '@vueuse/core';
 
-defineProps<{
+interface Props {
   isOpen: boolean;
   handleClose: () => void;
-}>();
+}
+
+defineProps<Props>();
 
 const el = ref<HTMLDivElement | null>(null)
 const isLocked = useScrollLock(el)
