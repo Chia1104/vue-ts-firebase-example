@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage.vue";
 import NotFoundPage from "../pages/exceptions/404.vue";
 import ProductPage from "../pages/ProductPage.vue";
 import ContactPage from "../pages/ContactPage.vue";
+import ProductListPage from "../pages/ProductListPage.vue";
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
         path: "/contact",
         name: 'ContactPage',
         component: ContactPage
+    },
+    {
+        path: "/product",
+        name: "ProductListPage",
+        component: ProductListPage
     },
     {
         path: "/:catchAll(.*)",

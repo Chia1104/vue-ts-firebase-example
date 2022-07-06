@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import {onMounted, computed} from "vue";
-import ProductsList from '@chia/components/pages/product/ProductsList.vue'
-import Banner from '@chia/components/pages/home/Banner.vue'
-import Story from '@chia/components/pages/home/Story.vue'
+import ProductsList from "@chia/components/pages/product/ProductsList.vue";
 import { useStore } from 'vuex';
+import {onMounted, computed} from "vue";
 
 const store = useStore()
 const products = computed(() => store.state.product.products)
@@ -17,16 +15,12 @@ onMounted(async () => {
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-      <Banner />
-      <h1 class="text-4xl font-bold self-start mb-20">
-        New Products
-      </h1>
       <ProductsList
           :is-success="products.isSuccess"
           :is-loading="products.isLoading"
           :products="products.data"
+          more-data
       />
-      <Story />
     </main>
   </div>
 </template>
