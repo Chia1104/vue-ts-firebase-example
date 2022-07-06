@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, ref, watch } from 'vue'
+import { defineProps, withDefaults, ref, watch, onMounted } from 'vue'
 import ProductItem from './ProductItem.vue'
 import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 import { useStore } from 'vuex';
+import { unrefElement } from '@vueuse/core'
 
 const store = useStore()
 
@@ -20,18 +21,24 @@ const props = withDefaults(defineProps<Props>(), {
   moreData: false,
 });
 
-const lastProduct = ref<HTMLElement | null>(null);
+const observer = ref<IntersectionObserver | null>(null)
+const lastProduct = ref<HTMLElement | null>(null)
 
-// watch(
-//   () => [observer.value, props.isLoading],
-//   (node: Node) => {
-//     if(props.isLoading) return;
-//     observer.value = new IntersectionObserver(entries => {
-//       if (entries[0].isIntersecting) store.dispatch('getMoreProductsAction');
-//     })
-//   },
-// );
+watch(() => unrefElement(lastProduct), (node) => {
+  if(props.isLoading) return;
+  if(observer.value) {
+    console.log('observer.disconnect()')
+    observer.value.disconnect()
+  }
 
+  observer.value = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting) console.debug('load more')
+  }, {
+    rootMargin: '50px',
+  })
+
+  if(node) observer.value.observe(node)
+});
 
 </script>
 
@@ -44,19 +51,19 @@ const lastProduct = ref<HTMLElement | null>(null);
       :product-data="product"
     />
     <template v-if="moreData && isSuccess">
-      <ProductItem
-          v-for="(product, index) in products"
-          v-if="index + 1 === products.length"
-          :key="product.id"
-          :product-data="product"
-          :ref="lastProduct"
-      />
-      <ProductItem
-          v-else
-          v-for="product in products"
-          :key="product.id"
-          :product-data="product"
-      />
+      <div v-for="(product, index) in products">
+        <ProductItem
+            v-if="index + 1 === products.length"
+            :product-data="product"
+            ref="lastProduct"
+            :key="product.id"
+        />
+        <ProductItem
+            v-else
+            :product-data="product"
+            :key="product.id"
+        />
+      </div>
     </template>
     <ProductsLoader v-if="isLoading"/>
   </div>

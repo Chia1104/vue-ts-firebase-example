@@ -18,6 +18,7 @@ export const getProductsAction = async (context: any) => {
 export const getMoreProductsAction = async (context: any, lastProduct: Product) => {
     context.commit('beginGetMoreProducts');
     try {
+        console.debug(lastProduct);
         const products = await getMoreProducts(lastProduct);
         if(!products) {
             context.commit('failGetMoreProducts', 'No home found');
