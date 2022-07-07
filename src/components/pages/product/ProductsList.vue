@@ -22,9 +22,9 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const observer = ref<IntersectionObserver | null>(null)
-const lastProduct = ref<HTMLElement | null>(null)
+const lastProduct = ref<HTMLElement[]>([])
 
-watch(() => unrefElement(lastProduct), (node) => {
+watch(() => unrefElement(lastProduct.value[0]), (node) => {
   if(props.isLoading) return;
   if(observer.value) {
     console.log('observer.disconnect()')
