@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, ref, watch, onMounted } from 'vue'
+import { defineProps, withDefaults, ref, watch } from 'vue'
 import ProductItem from './ProductItem.vue'
 import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
@@ -12,32 +12,29 @@ interface Props {
   products: Product[];
   isLoading: boolean;
   isSuccess: boolean;
-  moreData?: boolean;
+  hasMore?: boolean;
+  onMoreData?: () => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
   isSuccess: false,
-  moreData: false,
 });
 
 const observer = ref<IntersectionObserver | null>(null)
 const lastProduct = ref<HTMLElement[]>([])
 
-watch(() => unrefElement(lastProduct.value[0]), (node) => {
-  if(props.isLoading) return;
-  if(observer.value) {
-    console.log('observer.disconnect()')
-    observer.value.disconnect()
-  }
+watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node) => {
+  if(props.isLoading || !props.hasMore) return;
+  if(observer.value) observer.value.disconnect()
 
   observer.value = new IntersectionObserver(entries => {
-    if(entries[0].isIntersecting) console.debug('load more')
+    if(entries[0].isIntersecting && props.hasMore) props.onMoreData && props.hasMore && props.onMoreData()
   }, {
     rootMargin: '50px',
   })
 
-  if(node) observer.value.observe(node)
+  if(node && props.hasMore) observer.value.observe(node)
 });
 
 </script>
@@ -45,17 +42,17 @@ watch(() => unrefElement(lastProduct.value[0]), (node) => {
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
     <ProductItem
-      v-if="isSuccess && !moreData"
+      v-if="isSuccess && !onMoreData"
       v-for="product in products"
       :key="product.id"
       :product-data="product"
     />
-    <template v-if="moreData && isSuccess">
+    <template v-if="onMoreData && isSuccess">
       <div v-for="(product, index) in products">
         <ProductItem
             v-if="index + 1 === products.length"
             :product-data="product"
-            ref="lastProduct"
+            :ref="el => {lastProduct[index] = el}"
             :key="product.id"
         />
         <ProductItem

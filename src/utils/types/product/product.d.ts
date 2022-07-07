@@ -6,4 +6,5 @@ export type Product = {
     description: string;
     createdAt: string;
     price: number;
+    category?: string[];
 }

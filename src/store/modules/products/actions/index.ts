@@ -9,21 +9,22 @@ export const getProductsAction = async (context: any) => {
             context.commit('failGetProducts', 'No home found');
             return;
         }
+        if(products.length < 8) context.commit('hasMoreProducts', false);
         context.commit('successGetProducts', products);
     } catch (e) {
         context.commit('failGetProducts', e);
     }
 }
 
-export const getMoreProductsAction = async (context: any, lastProduct: Product) => {
+export const getMoreProductsAction = async (context: any, lastProductId: string) => {
     context.commit('beginGetMoreProducts');
     try {
-        console.debug(lastProduct);
-        const products = await getMoreProducts(lastProduct);
+        const products = await getMoreProducts(lastProductId);
         if(!products) {
             context.commit('failGetMoreProducts', 'No home found');
             return;
         }
+        if(products.length < 8) context.commit('hasMoreProducts', false);
         context.commit('successGetMoreProducts', products);
     } catch (e) {
         context.commit('failGetMoreProducts', e);

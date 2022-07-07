@@ -30,14 +30,15 @@ export const getProducts = async(): Promise<Product[]> => {
     }
 }
 
-export const getMoreProducts = async(lastProduct: Product): Promise<Product[]> => {
+export const getMoreProducts = async(id: string): Promise<Product[]> => {
     try {
         const ref = collection(firestore, 'products');
+        const docSnapshot = await getDoc(doc(firestore, `products/${id}`));
         const productsQuery = query(
             ref,
             orderBy('createdAt', 'desc'),
             limit(8),
-            startAfter(lastProduct),
+            startAfter(docSnapshot),
         )
 
         return (await getDocs(productsQuery)).docs.map(dataToJSON);

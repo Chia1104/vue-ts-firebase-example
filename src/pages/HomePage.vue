@@ -26,6 +26,15 @@ onMounted(async () => {
           :is-loading="products.isLoading"
           :products="products.data"
       />
+      <div class="mt-10">
+        <router-link
+            to="/product"
+            class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
+        <span class="c-button-secondary transform group-hover:-translate-x-1 group-hover:-translate-y-1 text-base">
+           See More
+        </span>
+        </router-link>
+      </div>
       <Story />
     </main>
   </div>

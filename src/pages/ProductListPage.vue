@@ -10,6 +10,8 @@ onMounted(async () => {
   if(products.value.data.length === 0) await store.dispatch('getProductsAction')
 });
 
+const onMoreData = () => store.dispatch('getMoreProductsAction', products.value.data[products.value.data.length - 1].id)
+
 </script>
 
 <template>
@@ -19,7 +21,8 @@ onMounted(async () => {
           :is-success="products.isSuccess"
           :is-loading="products.isLoading"
           :products="products.data"
-          more-data
+          :has-more="products.hasMore"
+          :on-more-data="onMoreData"
       />
     </main>
   </div>

@@ -18,6 +18,11 @@ export const failGetProducts = (state: productStateType, payload: string) => {
     state.products.isLoading = false;
     state.products.isError = true;
     state.products.error = payload;
+    state.products.hasMore = false;
+}
+
+export const hasMoreProducts = (state: productStateType, payload: boolean) => {
+    state.products.hasMore = payload;
 }
 
 export const beginGetMoreProducts = (state: productStateType) => {
