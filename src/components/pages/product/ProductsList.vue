@@ -12,8 +12,6 @@ interface Props {
   products: Product[];
   isLoading: boolean;
   isSuccess: boolean;
-  hasMore?: boolean;
-  onMoreData?: () => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,46 +19,16 @@ const props = withDefaults(defineProps<Props>(), {
   isSuccess: false,
 });
 
-const observer = ref<IntersectionObserver | null>(null)
-const lastProduct = ref<HTMLElement[]>([])
-
-watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node) => {
-  if(props.isLoading || !props.hasMore) return;
-  if(observer.value) observer.value.disconnect()
-
-  observer.value = new IntersectionObserver(entries => {
-    if(entries[0].isIntersecting && props.hasMore) props.onMoreData && props.hasMore && props.onMoreData()
-  }, {
-    rootMargin: '50px',
-  })
-
-  if(node && props.hasMore) observer.value.observe(node)
-});
-
 </script>
 
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <ProductItem
-      v-if="isSuccess && !onMoreData"
-      v-for="product in products"
-      :key="product.id"
-      :product-data="product"
-    />
-    <template v-if="onMoreData && isSuccess">
-      <div v-for="(product, index) in products" v-memo="[props.hasMore]">
-        <ProductItem
-            v-if="index + 1 === products.length"
-            :product-data="product"
-            :ref="el => {lastProduct[index] = el}"
-            :key="product.id"
-        />
-        <ProductItem
-            v-else
-            :product-data="product"
-            :key="product.id"
-        />
-      </div>
+    <template v-if="isSuccess">
+      <ProductItem
+          v-for="product in products.slice(0, 8)"
+          :key="product.id"
+          :product-data="product"
+      />
     </template>
     <ProductsLoader v-if="isLoading"/>
   </div>
