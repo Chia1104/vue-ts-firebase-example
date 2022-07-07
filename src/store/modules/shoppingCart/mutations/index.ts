@@ -12,3 +12,9 @@ export const removeFromCart = (state: shoppingCartStateType, payload: Product) =
     state.products = state.products.filter(product => product.id !== payload.id);
     state.total -= payload.price;
 }
+
+export const clearCart = (state: shoppingCartStateType) => {
+    state.count = 0;
+    state.products = [];
+    state.total = 0;
+}
