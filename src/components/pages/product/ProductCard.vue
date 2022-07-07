@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { defineProps, reactive } from "vue";
+import { defineProps, reactive, defineAsyncComponent } from "vue";
 import type { Product } from "@chia/utils/types/product";
-import Modal from "@chia/components/globals/Modal.vue";
 import {useStore} from "vuex";
+
+const Modal = defineAsyncComponent(() => import("@chia/components/globals/Modal.vue"));
 
 interface Props {
   product: Product;

@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="w-full h-screen md:h-[500px] c-bg-gradient-purple flex justify-center items-center text-light">
+  <footer class="w-full h-screen md:h-[500px] c-bg-gradient-purple flex justify-center items-center text-light" v-once>
     <div class="c-container px-20 w-full h-full max-w-[1200px] max-h-[450px] flex flex-col">
       <header class="title">
         VueShop

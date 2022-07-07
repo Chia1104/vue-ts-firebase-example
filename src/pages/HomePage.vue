@@ -17,7 +17,7 @@ onMounted(async () => {
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-      <Banner />
+      <Banner v-once/>
       <h1 class="text-4xl font-bold self-start mb-20">
         New Products
       </h1>

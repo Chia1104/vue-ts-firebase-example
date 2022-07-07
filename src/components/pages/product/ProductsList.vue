@@ -48,7 +48,7 @@ watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node
       :product-data="product"
     />
     <template v-if="onMoreData && isSuccess">
-      <div v-for="(product, index) in products">
+      <div v-for="(product, index) in products" v-memo="[props.hasMore]">
         <ProductItem
             v-if="index + 1 === products.length"
             :product-data="product"
