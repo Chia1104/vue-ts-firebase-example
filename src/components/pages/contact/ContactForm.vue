@@ -21,7 +21,6 @@ const handleSubmit = async () => {
     content: 'Sending message...',
     key,
   });
-  // @ts-ignore
   const FORMSPREE_KEY = import.meta.env.VITE_FORMSPREE_KEY
   const name = nameModel.value
   const email = emailModel.value
