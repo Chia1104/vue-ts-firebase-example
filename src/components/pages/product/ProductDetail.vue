@@ -27,7 +27,7 @@ const addProductToCart = (product: Product) => store.dispatch('addToCartAction',
   <article class="w-full">
     <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-14">
       <div class="rounded-xl aspect-w-1 aspect-h-1 overflow-hidden shadow-2xl hover:cursor-zoom-in group" @click="handleOpen">
-        <img :src="product.img_src" :alt="product.name" class="object-cover group-hover:scale-[1.05] transition ease-in-out duration-500"/>
+        <img :src="product.img_src" :alt="product.name" class="object-cover group-hover:scale-[1.05] transition ease-in-out duration-500" loading="lazy"/>
       </div>
       <div>
         <h1 class="title mb-10">{{ product.name }}</h1>
@@ -55,7 +55,7 @@ const addProductToCart = (product: Product) => store.dispatch('addToCartAction',
   >
     <div class="w-full max-w-[1400px]">
       <div class="aspect-w-1 aspect-h-1 hover:cursor-zoom-out">
-        <img :src="product.img_src" :alt="product.name" class="object-contain"/>
+        <img :src="product.img_src" :alt="product.name" class="object-contain" loading="lazy"/>
       </div>
     </div>
   </Modal>

@@ -13,10 +13,10 @@
       </p>
     </div>
     <div class="shadow-2xl rounded-2xl overflow-hidden">
-      <img class="object-contain" src="https://picsum.photos/id/671/1920/1080.webp" alt="First slide">
+      <img class="object-contain" src="https://picsum.photos/id/671/1920/1080.webp" alt="First slide" loading="lazy">
     </div>
     <div class="shadow-2xl rounded-2xl overflow-hidden">
-      <img class="object-contain" src="https://picsum.photos/id/671/1920/1080.webp" alt="First slide">
+      <img class="object-contain" src="https://picsum.photos/id/671/1920/1080.webp" alt="First slide" loading="lazy">
     </div>
     <div class="flex flex-col">
       <header class="text-4xl font-bold my-5">
