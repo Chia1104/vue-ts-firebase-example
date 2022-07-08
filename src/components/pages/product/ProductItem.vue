@@ -20,7 +20,7 @@ const addProductToCart = (product: Product) => store.dispatch('addToCartAction',
   <div
     class="w-full rounded-xl flex flex-col c-bg-secondary shadow-lg min-h-[400px] 2xl:min-h-[370px] group duration-300 transition ease-in-out relative">
     <div class="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-t-xl bg-gray-200 mb-3">
-      <img class="rounded group-hover:scale-[1.05] duration-300 transition ease-in-out object-cover" :src="productData.img_src" :alt="productData.name"/>
+      <img class="rounded group-hover:scale-[1.05] duration-300 transition ease-in-out object-cover" :src="productData.img_src" :alt="productData.name" loading="lazy"/>
     </div>
     <router-link
       :to="`/product/${productData.id}`"
