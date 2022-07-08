@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, ref, watch } from 'vue'
+import { defineProps, withDefaults } from 'vue'
 import ProductItem from './ProductItem.vue'
 import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 import { useStore } from 'vuex';
-import { unrefElement } from '@vueuse/core'
 
 const store = useStore()
 

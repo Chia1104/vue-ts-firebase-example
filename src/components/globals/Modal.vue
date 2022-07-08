@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, watch } from "vue";
 
 interface Props {
   isOpen: boolean;
   handleClose: () => void;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+watch(() => props.isOpen, (isOpen) => isOpen ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto");
 
 </script>
 

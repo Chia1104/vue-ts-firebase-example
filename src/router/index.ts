@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomePage from "../pages/HomePage.vue";
-import NotFoundPage from "../pages/exceptions/404.vue";
-import ProductPage from "../pages/ProductPage.vue";
-import ContactPage from "../pages/ContactPage.vue";
-import ProductListPage from "../pages/ProductListPage.vue";
+
+const HomePage = () => import("../pages/HomePage.vue");
+const NotFoundPage = () => import("../pages/exceptions/404.vue");
+const ProductDetailPage = () => import("../pages/ProductDetailPage.vue");
+const ContactPage = () => import("../pages/ContactPage.vue");
+const ProductListPage = () => import("../pages/ProductListPage.vue");
 
 
 const routes = [
@@ -19,7 +20,7 @@ const routes = [
     {
         path: "/product/:id",
         name: "ProductPage",
-        component: ProductPage,
+        component: ProductDetailPage,
         props:true
     },
     {

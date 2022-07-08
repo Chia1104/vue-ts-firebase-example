@@ -18,7 +18,7 @@ const activeDrawer = () => {
   <nav class="w-screen flex h-[75px] items-center top-0 fixed justify-center z-50 border-b-[1px] c-border-primary c-bg-secondary">
     <div class="flex container w-[100%]">
       <div class="flex items-center w-[70%] justify-start">
-        <router-link to="/" class="subtitle ml-3 hover:c-text-green-to-purple transition ease-in-out">
+        <router-link to="/" class="subtitle ml-3 hover:c-text-green-to-purple transition ease-in-out" v-once>
           VueShop
         </router-link>
       </div>
