@@ -2,6 +2,7 @@
 import { defineProps, reactive, defineAsyncComponent } from "vue";
 import type { Product } from "@chia/utils/types/product";
 import {useStore} from "vuex";
+import LoveIcon from '@chia/components/globals/LoveIcon.vue';
 
 const Modal = defineAsyncComponent(() => import("@chia/components/globals/Modal.vue"));
 
@@ -44,11 +45,7 @@ const addProductToCart = (product: Product) => store.dispatch('addToCartAction',
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
         </button>
-        <button class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] w-[52px] h-[52px] flex justify-center items-center transition duration-500 ease-in-out c-bg-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        </button>
+        <LoveIcon className="duration-500 ease-in-out c-bg-secondary w-[52px] h-[52px] flex justify-center items-center" icon-style="h-7 w-7"/>
       </div>
     </div>
   </article>

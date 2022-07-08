@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, computed} from "vue";
 import { useStore } from 'vuex';
-import ProductCard from '@chia/components/pages/product/ProductCard.vue'
+import ProductDetail from '@chia/components/pages/product/ProductDetail.vue'
 import { useRoute } from 'vue-router';
 
 const store = useStore()
@@ -17,7 +17,7 @@ onMounted(async () => {
 <template>
   <div class="c-container">
     <main class="main w-full">
-      <ProductCard
+      <ProductDetail
           :product="product.data"
       />
     </main>

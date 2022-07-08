@@ -4,9 +4,9 @@ import { ref } from "vue";
 import { message as antMessage } from 'ant-design-vue';
 
 const formSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  message: z.string(),
+  name: z.string().min(1),
+  email: z.string().email().min(1),
+  message: z.string().min(1),
 })
 type FormData = z.infer<typeof formSchema>
 const nameModel = ref("")
@@ -69,17 +69,20 @@ const handleSubmit = async () => {
         type="text"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="name"
+        required
         v-model="nameModel" />
     <input
         placeholder="Your email"
         type="email"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="email"
+        required
         v-model="emailModel" />
     <textarea
         placeholder="Your message"
         class="w-full p-3 border border-gray-300 rounded-lg my-5 min-h-[130px]"
         id="message"
+        required
         v-model="messageModel" />
 <!--    <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>-->
 <!--    <div :data-sitekey="reCaptcha" class="g-recaptcha self-center"/>-->
