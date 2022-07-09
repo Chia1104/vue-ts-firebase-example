@@ -62,7 +62,7 @@ const handleSubmit = async () => {
 
 <template>
   <form
-      class="w-full max-w-lg"
+      class="w-full max-w-lg flex flex-col"
       @submit.prevent="handleSubmit"
       ref="form"
   >
@@ -88,7 +88,7 @@ const handleSubmit = async () => {
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
     <div
-        :data-callback="res => gReCaptchaResponse.value = res"
+        :data-callback="res => gReCaptchaResponse = res"
         :data-sitekey="RE_CAPTCHA_KEY"
         class="g-recaptcha self-center"/>
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
