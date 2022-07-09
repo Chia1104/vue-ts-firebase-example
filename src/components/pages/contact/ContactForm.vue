@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { z } from 'zod'
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import { message as antMessage } from 'ant-design-vue';
 
 const formSchema = z.object({
@@ -14,10 +14,6 @@ const emailModel = ref("")
 const messageModel = ref("")
 const form = ref<HTMLFormElement | undefined>(undefined)
 const RE_CAPTCHA_KEY = ref(import.meta.env.VITE_RE_CAPTCHA_KEY)
-const gReCaptchaResponse = reactive({
-  response: "",
-  error: "",
-})
 
 const handleSubmit = async () => {
   const key = 'updatable';
@@ -30,6 +26,7 @@ const handleSubmit = async () => {
   const email = emailModel.value
   const message = messageModel.value
   const isValid = formSchema.safeParse({name, email, message});
+  // const data = new FormData(form.value)
 
   if (!isValid.success) {
     antMessage.error({
@@ -43,9 +40,10 @@ const handleSubmit = async () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Accept": "application/json"
     },
     body: JSON.stringify({
-      'g-recaptcha-response': gReCaptchaResponse.response,
+      // 'g-recaptcha-response': gReCaptchaResponse.value,
       name,
       email,
       message,
@@ -65,6 +63,7 @@ const handleSubmit = async () => {
 
 <template>
   <form
+      id="contact-form"
       class="w-full max-w-lg flex flex-col"
       @submit.prevent="handleSubmit"
       ref="form"
@@ -72,6 +71,7 @@ const handleSubmit = async () => {
     <input
         placeholder="Your name"
         type="text"
+        name="name"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="name"
         required
@@ -79,21 +79,22 @@ const handleSubmit = async () => {
     <input
         placeholder="Your email"
         type="email"
+        name="email"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="email"
         required
         v-model="emailModel" />
     <textarea
         placeholder="Your message"
+        name="message"
         class="w-full p-3 border border-gray-300 rounded-lg my-5 min-h-[130px]"
         id="message"
         required
         v-model="messageModel" />
-    <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
-    <div
-        :data-callback="(response: string) => { gReCaptchaResponse.response = response; }"
-        :data-sitekey="RE_CAPTCHA_KEY"
-        class="g-recaptcha self-center"/>
+<!--    <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>-->
+<!--    <div-->
+<!--        :data-sitekey="RE_CAPTCHA_KEY"-->
+<!--        class="g-recaptcha self-center"/>-->
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
       <span class="c-button-secondary transform group-hover:-translate-x-1 group-hover:-translate-y-1 text-base after:content-['_↗']">
          Send
