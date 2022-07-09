@@ -13,17 +13,19 @@ watch(() => props.isOpen, (isOpen) => isOpen ? document.body.style.overflow = "h
 </script>
 
 <template>
-  <Transition>
-    <div class="modal" v-if="isOpen" @click="handleClose">
-      <slot></slot>
-    </div>
-  </Transition>
+  <teleport to="body">
+    <Transition>
+      <div class="modal" v-if="isOpen" @click="handleClose">
+        <slot></slot>
+      </div>
+    </Transition>
+  </teleport>
 </template>
 
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 .v-enter-from,
 .v-leave-to {

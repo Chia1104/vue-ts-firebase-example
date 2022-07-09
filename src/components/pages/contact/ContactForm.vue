@@ -14,7 +14,7 @@ const emailModel = ref("")
 const messageModel = ref("")
 const form = ref<HTMLFormElement | undefined>(undefined)
 const RE_CAPTCHA_KEY = ref(import.meta.env.VITE_RE_CAPTCHA_KEY)
-const reCaptchaModel = ref("")
+const gReCaptchaResponse = ref("")
 
 const handleSubmit = async () => {
   const key = 'updatable';
@@ -26,10 +26,9 @@ const handleSubmit = async () => {
   const name = nameModel.value
   const email = emailModel.value
   const message = messageModel.value
-  const reCaptcha = reCaptchaModel.value
-  const isValid = formSchema.safeParse({ name, email, message });
+  const isValid = formSchema.safeParse({name, email, message});
 
-  if(!isValid.success) {
+  if (!isValid.success) {
     antMessage.error({
       content: 'Invalid form data',
       key,
@@ -43,13 +42,13 @@ const handleSubmit = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      reCaptcha,
+      'g-recaptcha-response': gReCaptchaResponse.value,
       name,
       email,
       message,
     }),
   })
-  if(response.ok) antMessage.success({
+  if (response.ok) antMessage.success({
     content: 'We have received your message!',
     key,
   })
@@ -89,7 +88,7 @@ const handleSubmit = async () => {
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
     <div
-        :ref="reCaptchaModel"
+        :data-callback="res => gReCaptchaResponse.value = res"
         :data-sitekey="RE_CAPTCHA_KEY"
         class="g-recaptcha self-center"/>
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
