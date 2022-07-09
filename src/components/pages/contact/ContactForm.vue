@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { z } from 'zod'
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { message as antMessage } from 'ant-design-vue';
 
 const formSchema = z.object({
@@ -14,7 +14,10 @@ const emailModel = ref("")
 const messageModel = ref("")
 const form = ref<HTMLFormElement | undefined>(undefined)
 const RE_CAPTCHA_KEY = ref(import.meta.env.VITE_RE_CAPTCHA_KEY)
-const gReCaptchaResponse = ref("")
+const gReCaptchaResponse = reactive({
+  response: "",
+  error: "",
+})
 
 const handleSubmit = async () => {
   const key = 'updatable';
@@ -42,7 +45,7 @@ const handleSubmit = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      'g-recaptcha-response': gReCaptchaResponse.value,
+      'g-recaptcha-response': gReCaptchaResponse.response,
       name,
       email,
       message,
@@ -56,10 +59,6 @@ const handleSubmit = async () => {
     content: 'Something went wrong',
     key,
   })
-}
-
-const handleReCaptcha = (response: string) => {
-  gReCaptchaResponse.value = response
 }
 
 </script>
@@ -92,7 +91,7 @@ const handleReCaptcha = (response: string) => {
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
     <div
-        :data-callback="(res: String) => handleReCaptcha(res)"
+        :data-callback="gReCaptchaResponse.response"
         :data-sitekey="RE_CAPTCHA_KEY"
         class="g-recaptcha self-center"/>
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
