@@ -92,7 +92,7 @@ const handleReCaptcha = (response: string) => {
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
     <div
-        :data-callback="(res: String) => handleReCaptcha(res)"
+        :data-callback="(res: string) => handleReCaptcha(res)"
         :data-sitekey="RE_CAPTCHA_KEY"
         class="g-recaptcha self-center"/>
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
