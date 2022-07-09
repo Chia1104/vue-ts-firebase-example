@@ -46,7 +46,7 @@ watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node
         <ProductItem
             v-if="index + 1 === products.length"
             :product-data="product"
-            :ref="el => {lastProduct[index] = el}"
+            :ref="el => lastProduct[index] = el"
             :key="product.id"
         />
         <ProductItem

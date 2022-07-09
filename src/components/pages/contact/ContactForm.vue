@@ -12,8 +12,9 @@ type FormData = z.infer<typeof formSchema>
 const nameModel = ref("")
 const emailModel = ref("")
 const messageModel = ref("")
-const form = ref<HTMLFormElement | null>(null)
-const reCaptcha = ref(import.meta.env.VITE_RE_CAPTCHA_KEY)
+const form = ref<HTMLFormElement | undefined>(undefined)
+const RE_CAPTCHA_KEY = ref(import.meta.env.VITE_RE_CAPTCHA_KEY)
+const reCaptchaModel = ref("")
 
 const handleSubmit = async () => {
   const key = 'updatable';
@@ -25,6 +26,7 @@ const handleSubmit = async () => {
   const name = nameModel.value
   const email = emailModel.value
   const message = messageModel.value
+  const reCaptcha = reCaptchaModel.value
   const isValid = formSchema.safeParse({ name, email, message });
 
   if(!isValid.success) {
@@ -41,6 +43,7 @@ const handleSubmit = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      reCaptcha,
       name,
       email,
       message,
@@ -86,9 +89,8 @@ const handleSubmit = async () => {
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>
     <div
-        data-callback="onSubmit"
-        data-action="submit"
-        :data-sitekey="reCaptcha"
+        :ref="reCaptchaModel"
+        :data-sitekey="RE_CAPTCHA_KEY"
         class="g-recaptcha self-center"/>
     <button type="submit" class="group hover:bg-secondary hover:dark:bg-primary relative inline-flex transition ease-in-out rounded mt-7 self-center">
       <span class="c-button-secondary transform group-hover:-translate-x-1 group-hover:-translate-y-1 text-base after:content-['_↗']">
