@@ -5,7 +5,7 @@ import type {Product} from "@chia/utils/types/product";
 import {useStore} from "vuex";
 
 interface Props {
-  product?: Product;
+  product: Product;
   className?: string;
 }
 
