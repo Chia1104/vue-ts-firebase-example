@@ -16,8 +16,8 @@ const localState = reactive({
   count: 0,
 });
 
-const addQty = (product: Product) => localState.count++;
-const removeQty = (product: Product) => localState.count--;
+const addQty = () => localState.count++;
+const removeQty = () => localState.count--;
 const addProductToCart = ({product, qty}: {product: Product, qty: number}) => store.dispatch('addProductToCartAction', {product, qty});
 
 </script>
