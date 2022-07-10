@@ -45,13 +45,13 @@ watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node
       <div v-for="(product, index) in products" v-memo="[props.hasMore]">
         <ProductItem
             v-if="index + 1 === products.length"
-            :product-data="product"
+            :product="product"
             :ref="el => lastProduct[index] = el"
             :key="product.id"
         />
         <ProductItem
             v-else
-            :product-data="product"
+            :product="product"
             :key="product.id"
         />
       </div>

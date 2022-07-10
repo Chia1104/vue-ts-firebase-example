@@ -1,16 +1,13 @@
 import type {Cart} from "@chia/utils/types/cart";
 
 export type cartStateType = {
-    cart: Cart[]
+    data: Cart[]
+    total: number
+    count: number
 }
 
 export const cartInitState = {
-    cart: [
-        {
-            productName: "",
-            productPrice: 0,
-            productQuantity: 0,
-            productId: ""
-        }
-    ]
+    data: [],
+    total: 0,
+    count: 0
 }

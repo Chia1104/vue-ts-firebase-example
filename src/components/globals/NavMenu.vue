@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Drawer as AntDrawer } from "ant-design-vue";
 import { ref, computed } from "vue";
-import ShoppingIcon from "@chia/components/globals/ShoppingIcon.vue";
+import CartIcon from "@chia/components/globals/Cart/CartIcon.vue";
 import { useStore } from 'vuex';
 
 const visible = ref(false);
 const store = useStore();
-const shoppingCart = computed(() => store.state.shoppingCart);
+const cart = computed(() => store.state.cart);
 
 const activeDrawer = () => {
   visible.value = !visible.value;
@@ -31,10 +31,10 @@ const activeDrawer = () => {
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </button>
-        <ShoppingIcon
-            :products="shoppingCart.products"
-            :count="shoppingCart.count"
-            :total="shoppingCart.total"
+        <CartIcon
+            :products="cart.data"
+            :count="cart.count"
+            :total="cart.total"
         />
       </div>
     </div>

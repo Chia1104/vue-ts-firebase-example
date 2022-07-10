@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
       <ProductItem
           v-for="product in products.slice(0, 8)"
           :key="product.id"
-          :product-data="product"
+          :product="product"
       />
     </template>
     <ProductsLoader v-if="isLoading"/>
