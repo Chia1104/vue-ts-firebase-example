@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Drawer as AntDrawer } from "ant-design-vue";
+import Drawer from "@chia/components/globals/Drawer.vue";
 import { ref, computed } from "vue";
 import CartIcon from "@chia/components/globals/Cart/CartIcon.vue";
 import { useStore } from 'vuex';
@@ -39,15 +39,10 @@ const activeDrawer = () => {
       </div>
     </div>
   </nav>
-  <AntDrawer
+  <Drawer
     :title="'Hello, 俞又嘉'"
-    placement="left"
-    :closable="false"
     :visible="visible"
-    @close="activeDrawer"
-  >
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-  </AntDrawer>
+    :on-close="activeDrawer"
+    :is-authenticated="true"
+  />
 </template>

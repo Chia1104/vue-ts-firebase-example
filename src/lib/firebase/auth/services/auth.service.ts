@@ -1,5 +1,7 @@
-import {signInWithEmailAndPassword} from "firebase/auth";
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile as firebaseUpdateProfile, onAuthStateChanged } from "firebase/auth";
+import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
 import {auth} from "../../config";
+import type { User } from "@chia/utils/types/user";
 
 export const login = async (email: string, password: string) => {
     try {
@@ -11,12 +13,42 @@ export const login = async (email: string, password: string) => {
     }
 }
 
-export const getUser = () => {
+export const getUser = (): User | null => {
     try {
-        return auth.currentUser;
+        return dataToJSON(auth.currentUser);
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
+export const register = async (email: string, password: string, c_password: string) => {
+    if(password !== c_password) return null;
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const logout = async () => {
+    try {
+        return await signOut(auth);
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const updateProfile = async (displayName: string, photoURL: string) => {
+    try {
+        const user = auth.currentUser;
+        if(!user) return null;
+        return await firebaseUpdateProfile(user, {displayName, photoURL});
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

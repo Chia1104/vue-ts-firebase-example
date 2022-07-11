@@ -8,7 +8,7 @@ const contactSchema = z.object({
   email: z.string().email().min(1),
   message: z.string().min(1),
 })
-type Contact = z.infer<typeof contactSchema>
+type ContactData = z.infer<typeof contactSchema>
 const nameModel = ref("")
 const emailModel = ref("")
 const messageModel = ref("")
@@ -72,7 +72,7 @@ const handleSubmit = async () => {
         type="text"
         name="name"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
-        id="name"
+        id="contact-name"
         required
         v-model="nameModel" />
     <input
@@ -80,14 +80,14 @@ const handleSubmit = async () => {
         type="email"
         name="email"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
-        id="email"
+        id="contact-email"
         required
         v-model="emailModel" />
     <textarea
         placeholder="Your message"
         name="message"
         class="w-full p-3 border border-gray-300 rounded-lg my-5 min-h-[130px]"
-        id="message"
+        id="contact-message"
         required
         v-model="messageModel" />
     <component is="script" src="https://www.google.com/recaptcha/api.js" async defer/>

@@ -1,6 +1,21 @@
 <script setup lang="ts">
 import NavMenu from "@chia/components/globals/NavMenu.vue";
 import Footer from "@chia/components/globals/Footer.vue";
+import { auth } from "@chia/lib/firebase/config";
+import { useStore } from "vuex";
+import { watchEffect } from "vue";
+
+const store = useStore()
+
+const firebaseUser = () => auth.onAuthStateChanged(user => {
+  if (user) {
+    store.commit('loginSuccess', user)
+  } else {
+    store.commit('loginError', 'You are not logged in')
+  }
+});
+
+watchEffect(firebaseUser)
 
 </script>
 

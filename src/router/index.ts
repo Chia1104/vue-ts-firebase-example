@@ -1,11 +1,12 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized} from "vue-router";
+import { auth } from "@chia/lib/firebase/config";
 
 const HomePage = () => import("../pages/HomePage.vue");
 const NotFoundPage = () => import("../pages/exceptions/404.vue");
 const ProductDetailPage = () => import("../pages/ProductDetailPage.vue");
 const ContactPage = () => import("../pages/ContactPage.vue");
 const ProductListPage = () => import("../pages/ProductListPage.vue");
-
+const LoginPage = () => import("../pages/LoginPage.vue");
 
 const routes = [
     {
@@ -34,6 +35,20 @@ const routes = [
         component: ProductListPage
     },
     {
+        path: "/login",
+        name: "LoginPage",
+        component: LoginPage,
+        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    next('/home');
+                } else {
+                    next();
+                }
+            });
+        }
+    },
+    {
         path: "/:catchAll(.*)",
         component: NotFoundPage
     }
@@ -46,5 +61,12 @@ const router = createRouter({
         return { top: 0 }
     },
 });
+
+router.beforeEach((to, from, next) => {
+    auth.onAuthStateChanged(user => {
+        if(to.name !== 'LoginPage' && !user) next({name: 'LoginPage'});
+        else next()
+    });
+})
 
 export default router;
