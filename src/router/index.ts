@@ -7,6 +7,7 @@ const ProductDetailPage = () => import("../pages/ProductDetailPage.vue");
 const ContactPage = () => import("../pages/ContactPage.vue");
 const ProductListPage = () => import("../pages/ProductListPage.vue");
 const LoginPage = () => import("../pages/LoginPage.vue");
+const ProfilePage = () => import("../pages/ProfilePage.vue");
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         path: "/product",
         name: "ProductListPage",
         component: ProductListPage
+    },
+    {
+        path: "/profile",
+        name: "ProfilePage",
+        component: ProfilePage,
     },
     {
         path: "/login",

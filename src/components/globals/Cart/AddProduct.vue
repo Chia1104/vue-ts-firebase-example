@@ -3,7 +3,6 @@ import { reactive, defineProps, watchEffect, computed } from "vue";
 import { Popover as AntPopover } from "ant-design-vue";
 import type {Product} from "@chia/utils/types/product";
 import {useStore} from "vuex";
-import { useStorage } from '@vueuse/core'
 
 interface Props {
   product: Product;

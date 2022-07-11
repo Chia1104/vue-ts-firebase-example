@@ -40,7 +40,6 @@ const activeDrawer = () => {
     </div>
   </nav>
   <Drawer
-    :title="'Hello, 俞又嘉'"
     :visible="visible"
     :on-close="activeDrawer"
     :is-authenticated="true"

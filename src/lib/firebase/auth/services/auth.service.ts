@@ -42,7 +42,7 @@ export const logout = async () => {
     }
 }
 
-export const updateProfile = async (displayName: string, photoURL: string) => {
+export const updateProfile = async (displayName?: string, photoURL?: string) => {
     try {
         const user = auth.currentUser;
         if(!user) return null;

@@ -20,7 +20,7 @@ watchEffect(firebaseUser)
 </script>
 
 <template>
-  <div class="mt-20">
+  <div class="mt-20 min-h-screen">
     <NavMenu />
     <router-view v-slot="{ Component, route }">
       <Transition>

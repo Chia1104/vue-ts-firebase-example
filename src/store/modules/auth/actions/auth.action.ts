@@ -1,4 +1,4 @@
-import { getUser, login, register, logout } from "@chia/lib/firebase/auth/services";
+import { getUser, login, register, logout, updateProfile } from "@chia/lib/firebase/auth/services";
 
 export const getUserAction = (context: any) => {
     context.commit('beginLogin')
@@ -34,6 +34,15 @@ export const registerAction = async (context: any, { email, password, c_password
 export const logoutAction = async (context: any) => {
     try {
         logout().then(() => context.commit('logout'))
+    } catch (error) {
+        context.commit('loginError', error);
+    }
+}
+
+export const updateProfileAction = async (context: any, { displayName, photoURL }: { displayName?: string, photoURL?: string }) => {
+    try {
+        const user = await updateProfile(displayName, photoURL);
+        user ? context.commit('loginSuccess', user) : context.commit('loginError', 'User not found');
     } catch (error) {
         context.commit('loginError', error);
     }
