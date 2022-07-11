@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { reactive, defineProps } from "vue";
+import { reactive, defineProps, watchEffect, computed } from "vue";
 import { Popover as AntPopover } from "ant-design-vue";
 import type {Product} from "@chia/utils/types/product";
 import {useStore} from "vuex";
+import { useStorage } from '@vueuse/core'
 
 interface Props {
   product: Product;
@@ -13,12 +14,16 @@ defineProps<Props>()
 
 const store = useStore();
 const localState = reactive({
+  disabled: true,
   count: 0,
 });
 
 const addQty = () => localState.count++;
 const removeQty = () => localState.count--;
 const addProductToCart = ({product, qty}: {product: Product, qty: number}) => store.dispatch('addProductToCartAction', {product, qty});
+watchEffect(() => {
+  localState.count >= 1 ? localState.disabled = false : localState.disabled = true;
+});
 
 </script>
 
@@ -31,7 +36,10 @@ const addProductToCart = ({product, qty}: {product: Product, qty: number}) => st
         <div class="flex justify-center items-center">
           <button
               @click="removeQty"
-              class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition mx-1">
+              class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition mx-1"
+              :disabled="localState.disabled"
+              :class="localState.disabled && 'text-gray-300'"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
             </svg>
@@ -47,7 +55,10 @@ const addProductToCart = ({product, qty}: {product: Product, qty: number}) => st
         </div>
         <button
             @click="addProductToCart({product, qty: localState.count})"
-            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition self-center">
+            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition self-center"
+            :disabled="localState.disabled"
+            :class="localState.disabled && 'text-gray-300'"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
