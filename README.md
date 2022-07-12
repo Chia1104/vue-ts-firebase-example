@@ -22,7 +22,7 @@ A simple Vue.js shopping web application practice.
 ## Features
 - [X] Infinite scroll
 - [X] Firebase Authentication
-- [ ] Dockerized
+- [X] Dockerized
 - [X] Unit Testing(with [Vitest](https://vitest.dev/))
 
 ## Deploy your own

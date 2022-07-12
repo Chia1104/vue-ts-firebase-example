@@ -1,0 +1,7 @@
+.git
+.idea
+.github
+.vscode
+.env
+node_modules
+cypress.env.json
