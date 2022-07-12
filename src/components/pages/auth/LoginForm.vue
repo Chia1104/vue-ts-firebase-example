@@ -4,7 +4,7 @@ import { ref, reactive, computed } from "vue";
 import { useStore } from 'vuex';
 import { useRouter } from "vue-router";
 import LoadingSpinner from "@chia/components/globals/LoadingSpinner.vue";
-// import {message as antMessage} from "ant-design-vue/lib/components";
+import { message as antMessage } from 'ant-design-vue';
 
 const store = useStore();
 const router = useRouter();
@@ -28,7 +28,11 @@ const validate = () => {
 
 const handleLogin = () => {
   store.dispatch('loginAction', {email: emailModel.value, password: passwordModel.value}).then(() => {
-    if(auth.value.isAuthenticated) router.push("/")
+    if(auth.value.isAuthenticated) {
+      antMessage.success('Login success')
+      router.push("/")
+    }
+    else antMessage.error(auth.value.error)
   })
 }
 
