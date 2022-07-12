@@ -24,6 +24,9 @@ A simple Vue.js shopping web application practice.
 - [X] Firebase Authentication
 - [X] Dockerized
 - [X] Unit Testing(with [Vitest](https://vitest.dev/))
+- [ ] E2E Testing(with [cypress](https://www.cypress.io/))
+- [ ] CI/CD(with [GitHub Actions])
+- [ ] GraphQL
 
 ## Deploy your own
 
@@ -52,4 +55,13 @@ Testing the app.
 
 ```bash
 $ yarn test:vitest # <-- test with vitest
+```
+
+Build the Docker image.
+
+Open http://localhost:8080 to view it in your browser.
+
+```bash
+$ docker build -t app:v1 .
+$ docker run -p 8080:8080 app:v1
 ```

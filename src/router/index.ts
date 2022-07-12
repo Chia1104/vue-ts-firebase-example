@@ -79,9 +79,13 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     auth.onAuthStateChanged(user => {
-        if(to.name === 'LoginPage' && user) next({name: 'HomePage'})
-        else if(to.name === 'RegisterPage' && user) next({name: 'HomePage'})
-        else next()
+        if (to.name === 'LoginPage' || to.name === 'RegisterPage') {
+            if (user) next('/home')
+            else next()
+        } else {
+            if (user) next()
+            else next('/login')
+        }
     });
 })
 
