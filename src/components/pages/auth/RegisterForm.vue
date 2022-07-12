@@ -31,9 +31,12 @@ const validate = () => {
 
 const handleRegister = () => {
   store.dispatch('registerAction', {email: emailModel.value, password: passwordModel.value, c_password: c_passwordModel.value}).then(() => {
-    if(auth.value.isAuthenticated) antMessage.success({
-      content: 'Register success',
-    }).then(() => router.push("/"))
+    if(auth.value.isAuthenticated) {
+      antMessage.success({
+        content: 'Register success',
+      })
+      router.push("/")
+    }
     else antMessage.error({
       content: auth.value.error,
     })

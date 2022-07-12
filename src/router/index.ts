@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized} from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import { auth } from "@chia/lib/firebase/config";
 
 const HomePage = () => import("../pages/HomePage.vue");
