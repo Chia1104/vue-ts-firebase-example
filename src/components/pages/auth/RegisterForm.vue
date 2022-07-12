@@ -29,18 +29,17 @@ const validate = () => {
 }
 
 const handleRegister = () => {
-  const key = 'updatable';
   store.dispatch('registerAction', {email: emailModel.value, password: passwordModel.value, c_password: c_passwordModel.value}).then(() => {
     if(auth.value.isAuthenticated) {
       antMessage.success({
         content: 'Register success',
-        key
+        prefixCls: 'ant-message',
       })
       router.push("/")
     }
     else antMessage.error({
       content: auth.value.error,
-      key
+      prefixCls: 'ant-message',
     })
   })
 }

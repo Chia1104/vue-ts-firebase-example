@@ -1,4 +1,4 @@
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile as firebaseUpdateProfile, onAuthStateChanged } from "firebase/auth";
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile as firebaseUpdateProfile } from "firebase/auth";
 import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
 import {auth} from "../../config";
 import type { User } from "@chia/utils/types/user";

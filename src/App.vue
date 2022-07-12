@@ -9,11 +9,8 @@ import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
 const store = useStore()
 
 const firebaseUser = () => auth.onAuthStateChanged(user => {
-  if (user) {
-    store.commit('loginSuccess', dataToJSON(user))
-  } else {
-    store.commit('loginError', 'You are not logged in')
-  }
+  if (user) store.commit('loginSuccess', dataToJSON(user))
+  else store.commit('loginError', 'You are not logged in')
 });
 
 watchEffect(firebaseUser)

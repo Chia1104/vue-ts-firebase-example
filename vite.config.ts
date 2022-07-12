@@ -10,4 +10,7 @@ export default defineConfig({
       '@chia': path.resolve(__dirname, './src'),
     },
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
 })
