@@ -56,6 +56,7 @@ const handleLogin = () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="login-email"
         required
+        autocomplete="on"
         v-model="emailModel" />
     <label class="text-lg font-bold self-start" for="login-password">Password</label>
     <input
@@ -65,6 +66,7 @@ const handleLogin = () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="login-password"
         required
+        autocomplete="on"
         v-model="passwordModel" />
     <button
         type="submit"

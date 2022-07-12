@@ -58,6 +58,7 @@ const handleRegister = () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="login-email"
         required
+        autocomplete="on"
         v-model="emailModel" />
     <label class="text-lg font-bold self-start" for="login-password">Password</label>
     <input
@@ -67,6 +68,7 @@ const handleRegister = () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="login-password"
         required
+        autocomplete="on"
         v-model="passwordModel" />
     <label class="text-lg font-bold self-start" for="login-cpassword">Confirm Password</label>
     <input
@@ -76,6 +78,7 @@ const handleRegister = () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="login-cpassword"
         required
+        autocomplete="on"
         v-model="c_passwordModel" />
     <button
         type="submit"

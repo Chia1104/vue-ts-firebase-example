@@ -39,29 +39,17 @@ const routes = [
     {
         path: "/profile",
         name: "ProfilePage",
-        component: ProfilePage,
+        component: ProfilePage
     },
     {
         path: "/login",
         name: "LoginPage",
-        component: LoginPage,
-        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-            auth.onAuthStateChanged(user => {
-                if (user) next('/home')
-                else next()
-            });
-        }
+        component: LoginPage
     },
     {
         path: "/register",
         name: "RegisterPage",
-        component: RegisterPage,
-        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-            auth.onAuthStateChanged(user => {
-                if (user) next('/home')
-                else next()
-            });
-        }
+        component: RegisterPage
     },
     {
         path: "/:catchAll(.*)",

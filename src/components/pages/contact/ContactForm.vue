@@ -74,6 +74,7 @@ const handleSubmit = async () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="contact-name"
         required
+        autocomplete="on"
         v-model="nameModel" />
     <input
         placeholder="Your email"
@@ -82,6 +83,7 @@ const handleSubmit = async () => {
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
         id="contact-email"
         required
+        autocomplete="on"
         v-model="emailModel" />
     <textarea
         placeholder="Your message"
