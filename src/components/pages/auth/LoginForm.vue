@@ -28,15 +28,18 @@ const validate = () => {
 }
 
 const handleLogin = () => {
+  const key = 'updatable';
   store.dispatch('loginAction', {email: emailModel.value, password: passwordModel.value}).then(() => {
     if(auth.value.isAuthenticated) {
       antMessage.success({
         content: 'Login success',
+        key
       })
       router.push("/")
     }
     else antMessage.error({
       content: auth.value.error,
+      key
     })
   })
 }
