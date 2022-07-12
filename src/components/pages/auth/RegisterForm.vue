@@ -77,23 +77,14 @@ const handleRegister = () => {
         id="login-cpassword"
         required
         v-model="c_passwordModel" />
-    <div class="w-full flex gap-5 justify-center items-center">
-      <button
-          type="submit"
-          class="group relative inline-flex transition ease-in-out rounded mt-7 self-center"
-          :class="!localState.disabled && 'hover:bg-secondary hover:dark:bg-primary'"
-          :disabled="localState.disabled">
+    <button
+        type="submit"
+        class="group relative inline-flex transition ease-in-out rounded mt-7 self-center"
+        :class="!localState.disabled && 'hover:bg-secondary hover:dark:bg-primary'"
+        :disabled="localState.disabled">
       <span class="c-button-secondary transform text-base" :class="!localState.disabled ? 'group-hover:-translate-x-1 group-hover:-translate-y-1' : 'text-gray-300'">
          Register
       </span>
-      </button>
-      <button
-          @click="router.push('/login')"
-          class="group relative inline-flex transition ease-in-out rounded mt-7 self-center hover:bg-secondary hover:dark:bg-primary">
-        <span class="c-button-secondary transform text-base group-hover:-translate-x-1 group-hover:-translate-y-1">
-           Login
-        </span>
-      </button>
-    </div>
+    </button>
   </form>
 </template>

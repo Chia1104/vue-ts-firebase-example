@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import RegisterForm from "@chia/components/pages/auth/RegisterForm.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 </script>
 
@@ -15,6 +18,13 @@ import RegisterForm from "@chia/components/pages/auth/RegisterForm.vue";
         Join us
       </h1>
       <RegisterForm />
+      <button
+          @click="router.push('/login')"
+          class="group relative inline-flex transition ease-in-out rounded mt-7 self-center hover:bg-secondary hover:dark:bg-primary">
+        <span class="c-button-secondary transform text-base group-hover:-translate-x-1 group-hover:-translate-y-1">
+           Login
+        </span>
+      </button>
     </main>
   </div>
 </template>
