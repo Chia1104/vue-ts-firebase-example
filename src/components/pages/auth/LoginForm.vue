@@ -13,10 +13,9 @@ const loginSchema = z.object({
   email: z.string().email().min(1),
   password: z.string().min(1),
 })
-type LoginData = z.infer<typeof loginSchema>
+
 const emailModel = ref("")
 const passwordModel = ref("")
-const form = ref<HTMLFormElement | undefined>(undefined)
 const auth = computed(() => store.state.auth)
 
 const localState = reactive({
@@ -51,7 +50,6 @@ const handleLogin = () => {
       class="w-full c-bg-secondary mx-auto max-w-lg px-10 flex flex-col items-center justify-center rounded-2xl py-14 shadow-2xl overflow-hidden"
       @submit.prevent="handleLogin"
       @change="validate"
-      ref="form"
       id="login-form">
     <LoadingSpinner v-if="auth.isLoading"/>
     <label class="text-lg font-bold self-start" for="login-email">Email</label>

@@ -14,11 +14,10 @@ const registerSchema = z.object({
   password: z.string().min(1),
   c_password: z.string().min(1),
 })
-type RegisterData = z.infer<typeof registerSchema>
+
 const emailModel = ref("")
 const passwordModel = ref("")
 const c_passwordModel = ref("")
-const form = ref<HTMLFormElement | undefined>(undefined)
 const auth = computed(() => store.state.auth)
 
 const localState = reactive({
@@ -53,36 +52,35 @@ const handleRegister = () => {
       class="w-full c-bg-secondary mx-auto max-w-lg px-10 flex flex-col items-center justify-center rounded-2xl py-14 shadow-2xl overflow-hidden"
       @submit.prevent="handleRegister"
       @change="validate"
-      ref="form"
-      id="login-form">
+      id="register-form">
     <LoadingSpinner v-if="auth.isLoading"/>
-    <label class="text-lg font-bold self-start" for="login-email">Email</label>
+    <label class="text-lg font-bold self-start" for="register-email">Email</label>
     <input
         placeholder="Your email"
         type="email"
         name="email"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
-        id="login-email"
+        id="register-email"
         required
         autocomplete="on"
         v-model="emailModel" />
-    <label class="text-lg font-bold self-start" for="login-password">Password</label>
+    <label class="text-lg font-bold self-start" for="register-password">Password</label>
     <input
         placeholder="Your password"
         type="password"
         name="password"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
-        id="login-password"
+        id="register-password"
         required
         autocomplete="on"
         v-model="passwordModel" />
-    <label class="text-lg font-bold self-start" for="login-cpassword">Confirm Password</label>
+    <label class="text-lg font-bold self-start" for="register-cpassword">Confirm Password</label>
     <input
         placeholder="Your password"
         type="password"
         name="c_password"
         class="w-full p-3 border border-gray-300 rounded-lg my-5"
-        id="login-cpassword"
+        id="register-cpassword"
         required
         autocomplete="on"
         v-model="c_passwordModel" />
