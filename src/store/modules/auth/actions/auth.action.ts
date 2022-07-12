@@ -5,8 +5,8 @@ export const getUserAction = (context: any) => {
     try {
         const user = getUser();
         user ? context.commit('loginSuccess', user) : context.commit('loginError', 'User not found');
-    } catch (error) {
-        context.commit('loginError', error);
+    } catch (e: any) {
+        context.commit('loginError', e.code);
     }
 }
 
@@ -15,8 +15,8 @@ export const loginAction = async (context: any, { email, password }: { email: st
     try {
         const user = await login(email, password);
         user ? context.commit('loginSuccess', user) : context.commit('loginError', 'User not found');
-    } catch (error) {
-        context.commit('loginError', error);
+    } catch (e: any) {
+        context.commit('loginError', e.code);
     }
 }
 
@@ -26,23 +26,23 @@ export const registerAction = async (context: any, { email, password, c_password
     try {
         const user = await register(email, password, c_password);
         user ? context.commit('loginSuccess', user) : context.commit('loginError', 'User not found');
-    } catch (error) {
-        context.commit('loginError', error);
+    } catch (e: any) {
+        context.commit('loginError', e.code);
     }
 }
 
 export const logoutAction = async (context: any) => {
     try {
         logout().then(() => context.commit('logout'))
-    } catch (error) {
-        context.commit('loginError', error);
+    } catch (e: any) {
+        context.commit('loginError', e.code);
     }
 }
 
 export const updateProfileAction = async (context: any, { displayName, photoURL }: { displayName?: string, photoURL?: string }) => {
     try {
         updateProfile(displayName, photoURL).then(() => context.commit('loginSuccess', getUser()))
-    } catch (error) {
-        context.commit('loginError', error);
+    } catch (e: any) {
+        context.commit('loginError', e.code);
     }
 }

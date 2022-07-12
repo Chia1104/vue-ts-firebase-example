@@ -8,6 +8,7 @@ const ContactPage = () => import("../pages/ContactPage.vue");
 const ProductListPage = () => import("../pages/ProductListPage.vue");
 const LoginPage = () => import("../pages/LoginPage.vue");
 const ProfilePage = () => import("../pages/ProfilePage.vue");
+const RegisterPage = () => import("../pages/RegisterPage.vue");
 
 const routes = [
     {
@@ -46,11 +47,19 @@ const routes = [
         component: LoginPage,
         beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
             auth.onAuthStateChanged(user => {
-                if (user) {
-                    next('/home');
-                } else {
-                    next();
-                }
+                if (user) next('/home')
+                else next()
+            });
+        }
+    },
+    {
+        path: "/register",
+        name: "RegisterPage",
+        component: RegisterPage,
+        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+            auth.onAuthStateChanged(user => {
+                if (user) next('/home')
+                else next()
             });
         }
     },
@@ -70,7 +79,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     auth.onAuthStateChanged(user => {
-        if(to.name !== 'LoginPage' && !user) next({name: 'LoginPage'});
+        if(to.name === 'LoginPage' && user) next({name: 'HomePage'})
+        else if(to.name === 'RegisterPage' && user) next({name: 'HomePage'})
         else next()
     });
 })

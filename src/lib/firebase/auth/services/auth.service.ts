@@ -9,7 +9,7 @@ export const login = async (email: string, password: string) => {
         return dataToJSON(userCredential.user);
     } catch (error) {
         console.error(error);
-        return null;
+        throw error;
     }
 }
 
@@ -18,7 +18,7 @@ export const getUser = (): User | null => {
         return dataToJSON(auth.currentUser);
     } catch (error) {
         console.error(error);
-        return null;
+        throw error;
     }
 }
 
@@ -29,7 +29,7 @@ export const register = async (email: string, password: string, c_password: stri
         return dataToJSON(userCredential.user);
     } catch (error) {
         console.error(error);
-        return null;
+        throw error;
     }
 }
 
@@ -38,7 +38,7 @@ export const logout = async () => {
         return await signOut(auth);
     } catch (error) {
         console.error(error);
-        return null;
+        throw error;
     }
 }
 
@@ -49,6 +49,6 @@ export const updateProfile = async (displayName?: string, photoURL?: string) => 
         return firebaseUpdateProfile(user, {displayName, photoURL});
     } catch (error) {
         console.error(error);
-        return null;
+        throw error;
     }
 }
