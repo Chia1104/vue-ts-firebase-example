@@ -41,8 +41,7 @@ export const logoutAction = async (context: any) => {
 
 export const updateProfileAction = async (context: any, { displayName, photoURL }: { displayName?: string, photoURL?: string }) => {
     try {
-        const user = await updateProfile(displayName, photoURL);
-        user ? context.commit('loginSuccess', user) : context.commit('loginError', 'User not found');
+        updateProfile(displayName, photoURL).then(() => context.commit('loginSuccess', getUser()))
     } catch (error) {
         context.commit('loginError', error);
     }

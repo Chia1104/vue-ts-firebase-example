@@ -6,7 +6,7 @@ import type { User } from "@chia/utils/types/user";
 export const login = async (email: string, password: string) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        return userCredential.user;
+        return dataToJSON(userCredential.user);
     } catch (error) {
         console.error(error);
         return null;
@@ -26,7 +26,7 @@ export const register = async (email: string, password: string, c_password: stri
     if(password !== c_password) return null;
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        return userCredential.user;
+        return dataToJSON(userCredential.user);
     } catch (error) {
         console.error(error);
         return null;
@@ -46,7 +46,7 @@ export const updateProfile = async (displayName?: string, photoURL?: string) => 
     try {
         const user = auth.currentUser;
         if(!user) return null;
-        return await firebaseUpdateProfile(user, {displayName, photoURL});
+        return firebaseUpdateProfile(user, {displayName, photoURL});
     } catch (error) {
         console.error(error);
         return null;

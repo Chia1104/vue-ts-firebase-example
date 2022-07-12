@@ -7,6 +7,5 @@ export const dataToJSON = (currentUser: any)  => {
         email: currentUser.email,
         name: currentUser.displayName,
         photoURL: currentUser.photoURL,
-        token: currentUser.getIdToken(),
     } as User;
 }
