@@ -7,13 +7,16 @@ import { Carousel as AntCarousel } from 'ant-design-vue'
   <div class="w-full rounded-2xl overflow-hidden mb-20 shadow-lg">
     <AntCarousel>
       <div class="">
-        <img class="object-contain" src="https://picsum.photos/id/1/1920/1080.webp" alt="First slide" loading="lazy">
+        <img class="object-contain" src="https://firebasestorage.googleapis.com/v0/b/vue-auth-example-b8ad7.appspot.com/o/banner%2Fbanner4.jpg?alt=media&token=9e00f8a0-e46c-424e-805f-bd370d5d5c5d" alt="First slide" loading="lazy">
       </div>
       <div class="">
-        <img class="object-contain" src="https://picsum.photos/id/2/1920/1080.webp" alt="Second slide" loading="lazy">
+        <img class="object-contain" src="https://firebasestorage.googleapis.com/v0/b/vue-auth-example-b8ad7.appspot.com/o/banner%2Fbanner2.jpg?alt=media&token=52665f30-1cb3-498c-9d74-fcc8a8fd1c3c" alt="Second slide" loading="lazy">
       </div>
       <div class="">
-        <img class="object-contain" src="https://picsum.photos/id/3/1920/1080.webp" alt="Third slide" loading="lazy">
+        <img class="object-contain" src="https://firebasestorage.googleapis.com/v0/b/vue-auth-example-b8ad7.appspot.com/o/banner%2Fbanner3.jpg?alt=media&token=456e4836-201c-4b75-9e7e-9f26486f2dab" alt="Third slide" loading="lazy">
+      </div>
+      <div class="">
+        <img class="object-contain" src="https://firebasestorage.googleapis.com/v0/b/vue-auth-example-b8ad7.appspot.com/o/banner%2Fbanner4.jpg?alt=media&token=9e00f8a0-e46c-424e-805f-bd370d5d5c5d" alt="Third slide" loading="lazy">
       </div>
     </AntCarousel>
   </div>
