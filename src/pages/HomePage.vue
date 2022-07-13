@@ -7,9 +7,11 @@ import { useStore } from 'vuex';
 
 const store = useStore()
 const products = computed(() => store.state.product.products)
+const banners = computed(() => store.state.image.banner)
 
 onMounted(async () => {
   if(products.value.data.length === 0) await store.dispatch('getProductsAction')
+  if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
 
 </script>
@@ -17,7 +19,9 @@ onMounted(async () => {
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-      <Banner v-once/>
+      <Banner
+          v-if="banners.isSuccess"
+          :list-url="banners.listUrl"/>
       <h1 class="text-4xl font-bold self-start mb-20">
         New Products
       </h1>
