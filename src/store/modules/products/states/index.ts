@@ -7,14 +7,22 @@ export type productStateType = {
         isError: boolean,
         error: string | null | undefined | object,
         data: Product[],
-        hasMore: boolean,
+        hasMore: boolean
     },
     product: {
         isLoading: boolean,
         isSuccess: boolean,
         isError: boolean,
         error: string | null | undefined | object,
-        data: Product,
+        data: Product
+    },
+    categoryProducts: {
+        isLoading: boolean,
+        isSuccess: boolean,
+        isError: boolean,
+        error: string | null | undefined | object,
+        data: Product[],
+        hasMore: boolean
     }
 }
 
@@ -25,13 +33,21 @@ export const productsInitState = {
         isError: false,
         error: null,
         data: [] as Product[],
-        hasMore: true,
+        hasMore: true
     },
     product: {
         isLoading: false,
         isSuccess: false,
         isError: false,
         error: null,
-        data: {} as Product,
+        data: {} as Product
+    },
+    categoryProducts: {
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        error: null,
+        data: [] as Product[],
+        hasMore: true
     }
 }

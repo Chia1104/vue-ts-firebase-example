@@ -9,6 +9,7 @@ const ProductListPage = () => import("../pages/ProductListPage.vue");
 const LoginPage = () => import("../pages/LoginPage.vue");
 const ProfilePage = () => import("../pages/ProfilePage.vue");
 const RegisterPage = () => import("../pages/RegisterPage.vue");
+const ProductCategoryPage = () => import("../pages/ProductCategoryPage.vue");
 
 const routes = [
     {
@@ -24,6 +25,12 @@ const routes = [
         path: "/product/:id",
         name: "ProductPage",
         component: ProductDetailPage,
+        props:true
+    },
+    {
+        path: "/product/category/:category",
+        name: "ProductCategoryPage",
+        component: ProductCategoryPage,
         props:true
     },
     {

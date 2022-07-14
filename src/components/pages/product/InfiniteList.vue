@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, ref, watch } from 'vue'
+import { defineProps, withDefaults, ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
 import ProductItem from './ProductItem.vue'
 import type {Product} from "@chia/utils/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
@@ -23,6 +23,11 @@ const props = withDefaults(defineProps<Props>(), {
 
 const observer = ref<IntersectionObserver | null>(null)
 const lastProduct = ref<HTMLElement[]>([])
+
+onBeforeUpdate(() => {
+  if (observer.value) observer.value.disconnect()
+  lastProduct.value = []
+})
 
 watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node) => {
   if(props.isLoading || !props.hasMore) return;

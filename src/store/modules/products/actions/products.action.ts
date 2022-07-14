@@ -45,31 +45,40 @@ export const getProductAction = async (context: any, { id }: {id: string}) => {
 }
 
 export const getProductsByCategoryAction = async (context: any, { category }: {category: string[]}) => {
-    context.commit('beginGetProducts');
+    context.commit('beginGetCategoryProducts');
+    context.commit('hasMoreCategoryProducts', true);
     try {
         const products = await getProductsByCategory(category);
         if(!products) {
-            context.commit('failGetProducts', 'No product found');
+            context.commit('failGetCategoryProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreProducts', false);
-        context.commit('successGetProducts', products);
+        if(products.length < 8) context.commit('hasMoreCategoryProducts', false);
+        context.commit('successGetCategoryProducts', products);
     } catch (e) {
-        context.commit('failGetProducts', e);
+        context.commit('failGetCategoryProducts', e);
     }
 }
 
 export const getMoreProductsByCategoryAction = async (context: any, { category, lastProductId }: {category: string[], lastProductId: string}) => {
-    context.commit('beginGetProducts');
+    context.commit('beginGetMoreCategoryProducts');
     try {
         const products = await getMoreProductsByCategory(lastProductId, category);
         if(!products) {
-            context.commit('failGetProducts', 'No product found');
+            context.commit('failGetMoreCategoryProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreProducts', false);
-        context.commit('successGetProducts', products);
+        if(products.length < 8) context.commit('hasMoreCategoryProducts', false);
+        context.commit('successGetMoreCategoryProducts', products);
     } catch (e) {
-        context.commit('failGetProducts', e);
+        context.commit('failGetMoreCategoryProducts', e);
     }
+}
+
+export const resetProductsAction = (context: any) => {
+    context.commit('resetProducts');
+}
+
+export const resetCategoryProductsAction = (context: any) => {
+    context.commit('resetCategoryProduct');
 }

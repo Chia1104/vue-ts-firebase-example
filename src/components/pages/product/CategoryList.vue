@@ -3,6 +3,7 @@ import { defineProps, ref, watchEffect } from "vue";
 import { Cascader as AntCascader } from "ant-design-vue";
 import type { CascaderProps } from 'ant-design-vue';
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 interface Props {
   cascaderProps: CascaderProps['options'];
@@ -12,12 +13,10 @@ interface Props {
 const props = defineProps<Props>()
 const store = useStore()
 const valueRef = ref<string[]>([]);
+const router = useRouter()
 
 watchEffect(() => {
-  if(valueRef.value?.length >= 1) {
-    store.dispatch('categorySelectedAction', true)
-    store.dispatch('getProductsByCategoryAction', {category: valueRef.value})
-  } else store.dispatch('categorySelectedAction', false)
+  if(valueRef.value?.length >= 1) router.push(`/product/category/${valueRef.value[0]}`)
 })
 
 </script>

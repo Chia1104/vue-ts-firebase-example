@@ -2,7 +2,7 @@
 import InfiniteList from "@chia/components/pages/product/InfiniteList.vue";
 import { useStore } from 'vuex';
 import {onMounted, computed} from "vue";
-// import CategoryList from "@chia/components/pages/product/CategoryList.vue";
+import CategoryList from "@chia/components/pages/product/CategoryList.vue";
 import { clotheCategory } from "@chia/data/clotheCategory";
 
 const store = useStore()
@@ -13,17 +13,16 @@ onMounted(async () => {
 });
 
 const onMoreData = () => store.dispatch('getMoreProductsAction', products.value.data[products.value.data.length - 1].id)
-const onMoreCategory = () => store.dispatch('getProductsByCategoryAction', {lastProductId: products.value.data[products.value.data.length - 1].id, category: clotheCategory})
 
 </script>
 
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-<!--      <CategoryList-->
-<!--          :cascaderProps="clotheCategory"-->
-<!--          class="mb-20"-->
-<!--      />-->
+      <CategoryList
+          :cascaderProps="clotheCategory"
+          class="mb-20"
+      />
       <InfiniteList
           :is-success="products.isSuccess"
           :is-loading="products.isLoading"
