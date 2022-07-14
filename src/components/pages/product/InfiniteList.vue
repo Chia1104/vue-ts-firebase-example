@@ -42,7 +42,7 @@ watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
     <template v-if="isSuccess">
-      <div v-for="(product, index) in products" v-memo="[props.hasMore]">
+      <div v-for="(product, index) in products">
         <ProductItem
             v-if="index + 1 === products.length"
             :product="product"
