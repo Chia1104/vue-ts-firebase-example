@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import {onMounted, computed} from "vue";
+import {onMounted, computed, watch} from "vue";
 import ProductsList from '@chia/components/pages/product/ProductsList.vue'
 import Banner from '@chia/components/pages/home/Banner.vue'
 import Story from '@chia/components/pages/home/Story.vue'
 import { useStore } from 'vuex';
+// import { useQuery } from '@vue/apollo-composable'
+// import { GET_CLOTHES } from '@chia/lib/GraphQL/clothes/queries'
 
 const store = useStore()
 const products = computed(() => store.state.product.products)
@@ -13,6 +15,9 @@ onMounted(async () => {
   if(products.value.data.length === 0) await store.dispatch('getProductsAction')
   if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
+
+// const { result } = useQuery(GET_CLOTHES)
+// watch(result, (newValue) => console.log(newValue))
 
 </script>
 
