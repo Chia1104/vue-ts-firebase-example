@@ -16,8 +16,8 @@ onMounted(async () => {
   if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
 
-// const { result } = useQuery(GET_CLOTHES)
-// watch(result, (newValue) => console.log(newValue))
+// const { result, loading } = useQuery(GET_CLOTHES)
+// watch(result, (newValue) => console.log(newValue.henry_clothes))
 
 </script>
 
