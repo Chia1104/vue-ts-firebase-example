@@ -21,10 +21,8 @@ const onMoreData = () => store.dispatch('getMoreProductsAction', products.value.
     <main class="main w-full text-center">
       <CategoryList
           :cascaderProps="clotheCategory"
-          class="mb-20"
-      />
+          class="mb-20"/>
       <InfiniteList
-          :is-success="products.isSuccess"
           :is-loading="products.isLoading"
           :products="products.data"
           :has-more="products.hasMore"

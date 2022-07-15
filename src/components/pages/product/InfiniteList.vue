@@ -11,14 +11,12 @@ const store = useStore()
 interface Props {
   products: Product[];
   isLoading: boolean;
-  isSuccess: boolean;
   hasMore: boolean;
   onMoreData: () => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
-  isSuccess: false,
 });
 
 const observer = ref<IntersectionObserver | null>(null)
@@ -46,21 +44,19 @@ watch(() => unrefElement(lastProduct.value[lastProduct.value.length - 1]), (node
 
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <template v-if="isSuccess">
-      <div v-for="(product, index) in products">
-        <ProductItem
-            v-if="index + 1 === products.length"
-            :product="product"
-            :ref="el => lastProduct[index] = el"
-            :key="product.id"
-        />
-        <ProductItem
-            v-else
-            :product="product"
-            :key="product.id"
-        />
-      </div>
-    </template>
+    <div v-for="(product, index) in products">
+      <ProductItem
+          v-if="index + 1 === products.length"
+          :product="product"
+          :ref="el => lastProduct[index] = el"
+          :key="product.id"
+      />
+      <ProductItem
+          v-else
+          :product="product"
+          :key="product.id"
+      />
+    </div>
     <ProductsLoader v-if="isLoading"/>
   </div>
 </template>

@@ -10,25 +10,21 @@ const store = useStore()
 interface Props {
   products: Product[];
   isLoading: boolean;
-  isSuccess: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
-  isSuccess: false,
 });
 
 </script>
 
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <template v-if="isSuccess">
-      <ProductItem
-          v-for="product in products.slice(0, 8)"
-          :key="product.id"
-          :product="product"
-      />
-    </template>
+    <ProductItem
+        v-for="product in products.slice(0, 8)"
+        :key="product.id"
+        :product="product"
+    />
     <ProductsLoader v-if="isLoading"/>
   </div>
 </template>

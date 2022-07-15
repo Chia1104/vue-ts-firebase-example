@@ -18,8 +18,7 @@ onMounted(async () => {
   <div class="c-container">
     <main class="main w-full">
       <ProductDetail
-          :product="product.data"
-      />
+          :product="product.data"/>
     </main>
   </div>
 </template>

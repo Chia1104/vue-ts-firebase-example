@@ -31,10 +31,8 @@ onMounted(async () => {
         New Products
       </h1>
       <ProductsList
-          :is-success="products.isSuccess"
           :is-loading="products.isLoading"
-          :products="products.data"
-      />
+          :products="products.data"/>
       <div class="mt-10">
         <router-link
             to="/product"
