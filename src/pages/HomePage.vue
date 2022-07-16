@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import {onMounted, computed, watch} from "vue";
+import {onMounted, computed, watch, reactive, onBeforeUnmount} from "vue";
 import ProductsList from '@chia/components/pages/product/ProductsList.vue'
 import Banner from '@chia/components/pages/home/Banner.vue'
 import Story from '@chia/components/pages/home/Story.vue'
 import { useStore } from 'vuex';
-// import { useQuery } from '@vue/apollo-composable'
-// import { GET_CLOTHES } from '@chia/lib/GraphQL/clothes/queries'
+import { useQuery } from '@vue/apollo-composable'
+import { GET_HOME_CLOTHES } from '@chia/lib/GraphQL/clothes/queries'
 
 const store = useStore()
-const products = computed(() => store.state.product.products)
 const banners = computed(() => store.state.image.banner)
 
 onMounted(async () => {
-  if(products.value.data.length === 0) await store.dispatch('getProductsAction')
   if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
 
-// const { result, loading } = useQuery(GET_CLOTHES)
-// watch(result, (newValue) => console.log(newValue.henry_clothes))
+const localState = reactive({
+  data: []
+})
+
+const { result, loading } = useQuery(GET_HOME_CLOTHES)
+// watch(result, (newVal) => {
+//   localState.data = newVal.clothes
+// })
 
 </script>
 
@@ -31,8 +35,8 @@ onMounted(async () => {
         New Products
       </h1>
       <ProductsList
-          :is-loading="products.isLoading"
-          :products="products.data"/>
+          :is-loading="loading"
+          :products="result.clothes"/>
       <div class="mt-10">
         <router-link
             to="/product"

@@ -1,12 +1,13 @@
 {
   "name": "Untitled GraphQL Schema",
-  "schemaPath": "./path/to/schema.graphql",
+  "schemaPath": "./schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://url/to/the/graphql/api",
+        "url": "http://localhost:3000/graphql",
         "headers": {
-          "user-agent": "JS GraphQL"
+          "content-type": "application/json",
+          "x-hasura-admin-secret": "secret key"
         },
         "introspect": false
       }

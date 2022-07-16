@@ -1,15 +1,30 @@
 import { gql } from 'graphql-tag'
 
-export const GET_CLOTHES = gql`
+export const GET_HOME_CLOTHES = gql`
     query GetClothes {
-        henry_clothes(order_by: { createdAt: desc }, limit: 8) {
+        clothes(order_by: { created_at: desc }, limit: 8) {
             name
             price
             id
-            createdAt
+            created_at
             description
             excerpt
             img_src
+            category
+        }
+    }
+`;
+
+export const GET_CLOTHES_BY_ID = gql`
+    query GetClothes($id: uuid!) {
+        clothes(where: {id: {_eq: $id}}) {
+            id
+            name
+            price
+            img_src
+            excerpt
+            description
+            created_at
             category
         }
     }

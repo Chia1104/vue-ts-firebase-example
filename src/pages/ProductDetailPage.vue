@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import {onMounted, computed} from "vue";
-import { useStore } from 'vuex';
 import ProductDetail from '@chia/components/pages/product/ProductDetail.vue'
+import {useQuery} from "@vue/apollo-composable";
+import {GET_CLOTHES_BY_ID} from "@chia/lib/GraphQL/clothes/queries";
 import { useRoute } from 'vue-router';
+import { watch, reactive } from "vue";
 
-const store = useStore()
-const product = computed(() => store.state.product.product)
-const route = useRoute()
+const route = useRoute();
 
-onMounted(async () => {
-  await store.dispatch('getProductAction', {id: route.params.id})
-});
+const { result, error } = useQuery(GET_CLOTHES_BY_ID, {
+  id: route.params.id
+})
+
+const localState = reactive({
+  data: []
+})
+// watch(result, (newVal) => {
+//   localState.data = newVal.clothes
+// })
 
 </script>
 
@@ -18,7 +24,8 @@ onMounted(async () => {
   <div class="c-container">
     <main class="main w-full">
       <ProductDetail
-          :product="product.data"/>
+          v-if="!error"
+          :product="result.clothes[0]"/>
     </main>
   </div>
 </template>

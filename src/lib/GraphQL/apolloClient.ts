@@ -20,9 +20,9 @@ export const apolloClient = new ApolloClient({
     link: authLink.concat(httpLink),
     cache,
     defaultOptions: {
-        watchQuery: {
-            fetchPolicy: 'no-cache',
-        }
+        // watchQuery: {
+        //     fetchPolicy: 'no-cache',
+        // }
     }
 })
 
