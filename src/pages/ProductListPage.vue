@@ -1,31 +1,41 @@
 <script setup lang="ts">
 import InfiniteList from "@chia/components/pages/product/InfiniteList.vue";
-import { useStore } from 'vuex';
-import {onMounted, computed} from "vue";
 import CategoryList from "@chia/components/pages/product/CategoryList.vue";
 import { clotheCategory } from "@chia/data/clotheCategory";
+import {useQuery} from "@vue/apollo-composable";
+import {GET_CLOTHES} from "@chia/lib/GraphQL/clothes/queries";
 
-const store = useStore()
-const products = computed(() => store.state.product.products)
+const { result, loading, fetchMore } = useQuery(GET_CLOTHES, {
+  offset: 0,
+})
 
-onMounted(async () => {
-  if(products.value.data.length === 0) await store.dispatch('getProductsAction')
-});
-
-const onMoreData = () => store.dispatch('getMoreProductsAction', products.value.data[products.value.data.length - 1].id)
+const onMoreData = () => {
+  fetchMore({
+    variables: {
+      offset: result.value.clothes.length,
+    },
+    updateQuery: (prev, { fetchMoreResult }) => {
+      if (!fetchMoreResult) return prev;
+      return {
+        ...prev,
+        clothes: [...prev.clothes, ...fetchMoreResult.clothes],
+      };
+    },
+  });
+};
 
 </script>
 
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-      <CategoryList
-          :cascaderProps="clotheCategory"
-          class="mb-20"/>
+<!--      <CategoryList-->
+<!--          :cascaderProps="clotheCategory"-->
+<!--          class="mb-20"/>-->
       <InfiniteList
-          :is-loading="products.isLoading"
-          :products="products.data"
-          :has-more="products.hasMore"
+          :is-loading="loading"
+          :products="result.clothes"
+          :has-more="true"
           :on-more-data="onMoreData"
       />
     </main>

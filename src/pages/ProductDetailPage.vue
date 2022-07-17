@@ -3,20 +3,12 @@ import ProductDetail from '@chia/components/pages/product/ProductDetail.vue'
 import {useQuery} from "@vue/apollo-composable";
 import {GET_CLOTHES_BY_ID} from "@chia/lib/GraphQL/clothes/queries";
 import { useRoute } from 'vue-router';
-import { watch, reactive } from "vue";
 
 const route = useRoute();
 
 const { result, error } = useQuery(GET_CLOTHES_BY_ID, {
   id: route.params.id
 })
-
-const localState = reactive({
-  data: []
-})
-// watch(result, (newVal) => {
-//   localState.data = newVal.clothes
-// })
 
 </script>
 

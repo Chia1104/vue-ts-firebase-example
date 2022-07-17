@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, computed, watch, reactive, onBeforeUnmount} from "vue";
+import {onMounted, computed} from "vue";
 import ProductsList from '@chia/components/pages/product/ProductsList.vue'
 import Banner from '@chia/components/pages/home/Banner.vue'
 import Story from '@chia/components/pages/home/Story.vue'
@@ -14,14 +14,7 @@ onMounted(async () => {
   if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
 
-const localState = reactive({
-  data: []
-})
-
 const { result, loading } = useQuery(GET_HOME_CLOTHES)
-// watch(result, (newVal) => {
-//   localState.data = newVal.clothes
-// })
 
 </script>
 
