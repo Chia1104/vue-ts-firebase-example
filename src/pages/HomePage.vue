@@ -4,17 +4,15 @@ import ProductsList from '@chia/components/pages/product/ProductsList.vue'
 import Banner from '@chia/components/pages/home/Banner.vue'
 import Story from '@chia/components/pages/home/Story.vue'
 import { useStore } from 'vuex';
-import { useQuery } from '@vue/apollo-composable'
-import { GET_HOME_CLOTHES } from '@chia/lib/GraphQL/clothes/queries'
 
 const store = useStore()
 const banners = computed(() => store.state.image.banner)
+const products = computed(() => store.state.product.products)
 
 onMounted(async () => {
+  if(products.value.data.length === 0) await store.dispatch('getProductsAction')
   if(banners.value.listUrl.length === 0) await store.dispatch('getBannerAction', {category: 'banner'})
 });
-
-const { result, loading } = useQuery(GET_HOME_CLOTHES)
 
 </script>
 
@@ -28,8 +26,8 @@ const { result, loading } = useQuery(GET_HOME_CLOTHES)
         New Products
       </h1>
       <ProductsList
-          :is-loading="loading"
-          :products="result.clothes"/>
+          :is-loading="products.isLoading"
+          :products="products.data"/>
       <div class="mt-10">
         <router-link
             to="/product"

@@ -1,30 +1,36 @@
 import { getProducts, getProduct, getMoreProducts, getProductsByCategory, getMoreProductsByCategory } from "@chia/lib/firebase/products/services";
+import apolloClient from "@chia/lib/GraphQL/apolloClient";
+import { GET_CLOTHES, GET_CLOTHES_BY_ID } from "@chia/lib/GraphQL/clothes/queries";
 
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
     try {
-        const products = await getProducts();
-        if(!products) {
+        const products = await apolloClient.request(GET_CLOTHES, {
+            offset: 0,
+        })
+        if(! products.clothes) {
             context.commit('failGetProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreProducts', false);
-        context.commit('successGetProducts', products);
+        if( products.clothes.length < 8) context.commit('hasMoreProducts', false);
+        context.commit('successGetProducts', products.clothes);
     } catch (e) {
         context.commit('failGetProducts', e);
     }
 }
 
-export const getMoreProductsAction = async (context: any, lastProductId: string) => {
+export const getMoreProductsAction = async (context: any, offset: number) => {
     context.commit('beginGetMoreProducts');
     try {
-        const products = await getMoreProducts(lastProductId);
-        if(!products) {
+        const products = await apolloClient.request(GET_CLOTHES, {
+            offset: offset,
+        })
+        if(! products.clothes) {
             context.commit('failGetMoreProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreProducts', false);
-        context.commit('successGetMoreProducts', products);
+        if( products.clothes.length < 8) context.commit('hasMoreProducts', false);
+        context.commit('successGetMoreProducts',  products.clothes);
     } catch (e) {
         context.commit('failGetMoreProducts', e);
     }
@@ -33,12 +39,14 @@ export const getMoreProductsAction = async (context: any, lastProductId: string)
 export const getProductAction = async (context: any, { id }: {id: string}) => {
     context.commit('beginGetProduct');
     try {
-        const product = await getProduct(id);
-        if(!product) {
+        const product = await apolloClient.request(GET_CLOTHES_BY_ID, {
+            id: id,
+        })
+        if(!product.clothes) {
             context.commit('failGetProduct', 'No product found');
             return;
         }
-        context.commit('successGetProduct', product);
+        context.commit('successGetProduct',  product.clothes[0]);
     } catch (e) {
         context.commit('failGetProduct', e);
     }
