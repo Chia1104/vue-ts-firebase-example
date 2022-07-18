@@ -1,4 +1,4 @@
-import { getUser } from '@chia/lib/firebase/auth/services';
+import { getUser, refreshToken } from '@chia/lib/firebase/auth/services';
 
 export const authMiddleware = async (request: RequestInit) => {
     const user = await getUser();
@@ -16,5 +16,14 @@ export const getAuthCreditentials = async () => {
     return {
         'content-type': 'application/json',
         'Authorization': `Bearer ${user.accessToken}`
+    }
+}
+
+export const handleRefreshToken = async () => {
+    const token = (await refreshToken);
+    if(!token) throw new Error('User not logged in');
+    return {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
     }
 }

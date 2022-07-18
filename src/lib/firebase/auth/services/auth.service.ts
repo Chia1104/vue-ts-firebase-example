@@ -1,4 +1,4 @@
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile as firebaseUpdateProfile } from "firebase/auth";
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile as firebaseUpdateProfile, onIdTokenChanged } from "firebase/auth";
 import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
 import {auth} from "../../config";
 import type { User } from "@chia/utils/types/user";
@@ -21,6 +21,15 @@ export const getUser = (): User | null => {
         throw error;
     }
 }
+
+export const refreshToken = new Promise((resolve) => {
+    onIdTokenChanged(auth, (user) => {
+        if (user) {
+            const token = user.getIdToken();
+            resolve(token);
+        }
+    })
+})
 
 export const register = async (email: string, password: string, c_password: string) => {
     if(password !== c_password) return null;
