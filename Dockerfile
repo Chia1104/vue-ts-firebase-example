@@ -1,8 +1,9 @@
 FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY .npmrc package.json pnpm-lock.yaml .pnpmfile.cjs ./
+RUN pnpm install --frozen-lockfile --prod
 
 FROM node:16-alpine AS builder
 WORKDIR /app
