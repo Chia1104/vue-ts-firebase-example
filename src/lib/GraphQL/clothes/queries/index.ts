@@ -47,8 +47,23 @@ export const GET_CLOTHES_BY_ID = gql`
 `;
 
 export const GET_CLOTHES_BY_CATEGORY = gql`
-    query GetClothesByCategory($category: _text!, $offset: Int!) {
-        clothes(where: {category: {_eq: $category}}, , limit: 8, offset: $offset) {
+    query GetClothesByCategory($category_jsonb: jsonb!) {
+        clothes(where: {category_jsonb: {_contains: $category_jsonb}}, limit: 8, offset: 0) {
+            id
+            name
+            price
+            img_src
+            excerpt
+            description
+            created_at
+            category
+        }
+    }
+`;
+
+export const GET_MORE_CLOTHES_BY_CATEGORY = gql`
+    query GetMoreClothesByCategory($category_jsonb: jsonb!, $offset: Int!) {
+        clothes(where: {category_jsonb: {_contains: $category_jsonb}}, limit: 8, offset: $offset) {
             id
             name
             price

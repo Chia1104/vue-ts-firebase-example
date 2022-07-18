@@ -1,14 +1,13 @@
-import { getProducts, getProduct, getMoreProducts, getProductsByCategory, getMoreProductsByCategory } from "@chia/lib/firebase/products/services";
-import apolloClient from "@chia/lib/GraphQL/apolloClient";
-import { GET_CLOTHES, GET_CLOTHES_BY_ID } from "@chia/lib/GraphQL/clothes/queries";
+import graphqlClient from "@chia/lib/GraphQL/graphqlClient";
+import { GET_CLOTHES, GET_CLOTHES_BY_ID, GET_CLOTHES_BY_CATEGORY, GET_MORE_CLOTHES_BY_CATEGORY } from "@chia/lib/GraphQL/clothes/queries";
 
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
     try {
-        const products = await apolloClient.request(GET_CLOTHES, {
+        const products = await graphqlClient.request(GET_CLOTHES, {
             offset: 0,
         })
-        if(! products.clothes) {
+        if(!products.clothes) {
             context.commit('failGetProducts', 'No product found');
             return;
         }
@@ -22,10 +21,10 @@ export const getProductsAction = async (context: any) => {
 export const getMoreProductsAction = async (context: any, offset: number) => {
     context.commit('beginGetMoreProducts');
     try {
-        const products = await apolloClient.request(GET_CLOTHES, {
+        const products = await graphqlClient.request(GET_CLOTHES, {
             offset: offset,
         })
-        if(! products.clothes) {
+        if(!products.clothes) {
             context.commit('failGetMoreProducts', 'No product found');
             return;
         }
@@ -39,7 +38,7 @@ export const getMoreProductsAction = async (context: any, offset: number) => {
 export const getProductAction = async (context: any, { id }: {id: string}) => {
     context.commit('beginGetProduct');
     try {
-        const product = await apolloClient.request(GET_CLOTHES_BY_ID, {
+        const product = await graphqlClient.request(GET_CLOTHES_BY_ID, {
             id: id,
         })
         if(!product.clothes) {
@@ -52,32 +51,37 @@ export const getProductAction = async (context: any, { id }: {id: string}) => {
     }
 }
 
-export const getProductsByCategoryAction = async (context: any, { category }: {category: string[]}) => {
+export const getProductsByCategoryAction = async (context: any, { category }: {category: string}) => {
     context.commit('beginGetCategoryProducts');
     context.commit('hasMoreCategoryProducts', true);
     try {
-        const products = await getProductsByCategory(category);
-        if(!products) {
+        const products = await graphqlClient.request(GET_CLOTHES_BY_CATEGORY, {
+            category_jsonb: category,
+        })
+        if(!products.clothes) {
             context.commit('failGetCategoryProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreCategoryProducts', false);
-        context.commit('successGetCategoryProducts', products);
+        if(products.clothes.length < 8) context.commit('hasMoreCategoryProducts', false);
+        context.commit('successGetCategoryProducts', products.clothes);
     } catch (e) {
         context.commit('failGetCategoryProducts', e);
     }
 }
 
-export const getMoreProductsByCategoryAction = async (context: any, { category, lastProductId }: {category: string[], lastProductId: string}) => {
+export const getMoreProductsByCategoryAction = async (context: any, { category, offset }: {category: string, offset: number}) => {
     context.commit('beginGetMoreCategoryProducts');
     try {
-        const products = await getMoreProductsByCategory(lastProductId, category);
-        if(!products) {
+        const products = await graphqlClient.request(GET_MORE_CLOTHES_BY_CATEGORY, {
+            category_jsonb: category,
+            offset: offset,
+        })
+        if(!products.clothes) {
             context.commit('failGetMoreCategoryProducts', 'No product found');
             return;
         }
-        if(products.length < 8) context.commit('hasMoreCategoryProducts', false);
-        context.commit('successGetMoreCategoryProducts', products);
+        if(products.clothes.length < 8) context.commit('hasMoreCategoryProducts', false);
+        context.commit('successGetMoreCategoryProducts', products.clothes);
     } catch (e) {
         context.commit('failGetMoreCategoryProducts', e);
     }

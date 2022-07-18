@@ -7,12 +7,12 @@ const store = useStore()
 const categoryProducts = computed(() => store.state.product.categoryProducts)
 const route = useRoute()
 onMounted(async () => {
-  await store.dispatch('getProductsByCategoryAction', {category: [route.params.category]})
+  await store.dispatch('getProductsByCategoryAction', {category: route.params.category})
 });
 onBeforeUnmount(() => {
   store.dispatch('resetCategoryProductsAction')
 });
-const onMoreCategory = () => store.dispatch('getMoreProductsByCategoryAction', {lastProductId: categoryProducts.value.data[categoryProducts.value.data.length - 1].id, category: [route.params.category]})
+const onMoreCategory = () => store.dispatch('getMoreProductsByCategoryAction', {offset: categoryProducts.value.data.length, category: route.params.category})
 </script>
 
 <template>
