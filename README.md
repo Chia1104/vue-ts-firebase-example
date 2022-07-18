@@ -14,6 +14,12 @@ A simple Vue.js shopping web application practice.
   <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> 
     <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> 
   </a>
+  <a href="https://graphql.org" target="_blank" rel="noreferrer"> 
+    <img src="https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" alt="graphql" width="40" height="40"/> 
+  </a> 
+  <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> 
+  </a>
   <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> 
     <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> 
   </a>
@@ -29,7 +35,7 @@ A simple Vue.js shopping web application practice.
 - [X] Unit Testing(with [Vitest](https://vitest.dev/))
 - [ ] E2E Testing(with [cypress](https://www.cypress.io/))
 - [ ] CI/CD(with [GitHub Actions](https://github.com/features/actions))
-- [ ] GraphQL
+- [X] GraphQL
 
 ## Deploy your own
 
@@ -50,14 +56,14 @@ Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
 
 ```bash
-$ yarn
-$ yarn dev
+$ pnpm install
+$ pnpm dev
 ```
 
 Testing the app.
 
 ```bash
-$ yarn test:vitest # <-- test with vitest
+$ pnpm test:vitest # <-- test with vitest
 ```
 
 Build the Docker image.
