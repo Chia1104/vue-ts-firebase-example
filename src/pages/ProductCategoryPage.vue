@@ -1,31 +1,18 @@
 <script setup lang="ts">
 import InfiniteList from "@chia/components/pages/product/InfiniteList.vue";
+import { useStore } from 'vuex';
+import {onMounted, computed, onBeforeUnmount} from "vue";
 import { useRoute } from 'vue-router';
-import {useQuery} from "@vue/apollo-composable";
-import {GET_CLOTHES_BY_CATEGORY} from "@chia/lib/GraphQL/clothes/queries";
-
+const store = useStore()
+const categoryProducts = computed(() => store.state.product.categoryProducts)
 const route = useRoute()
-
-const { result, loading, fetchMore } = useQuery(GET_CLOTHES_BY_CATEGORY, {
-  category: route.params.category,
-  offset: 0,
-})
-
-const onMoreCategory = () => {
-  fetchMore({
-    variables: {
-      offset: result.value.clothes.length,
-    },
-    updateQuery: (prev, { fetchMoreResult }) => {
-      if (!fetchMoreResult) return prev;
-      return {
-        ...prev,
-        clothes: [...prev.clothes, ...fetchMoreResult.clothes],
-      };
-    },
-  });
-};
-
+onMounted(async () => {
+  await store.dispatch('getProductsByCategoryAction', {category: [route.params.category]})
+});
+onBeforeUnmount(() => {
+  store.dispatch('resetCategoryProductsAction')
+});
+const onMoreCategory = () => store.dispatch('getMoreProductsByCategoryAction', {lastProductId: categoryProducts.value.data[categoryProducts.value.data.length - 1].id, category: [route.params.category]})
 </script>
 
 <template>
@@ -35,9 +22,9 @@ const onMoreCategory = () => {
         {{route.params.category}}
       </h1>
       <InfiniteList
-          :is-loading="loading"
-          :products="result.clothes"
-          :has-more="true"
+          :is-loading="categoryProducts.isLoading"
+          :products="categoryProducts.data"
+          :has-more="categoryProducts.hasMore"
           :on-more-data="onMoreCategory"
       />
     </main>
