@@ -4,4 +4,5 @@ export type User = {
     name?: string,
     photoURL?: string,
     token: string,
+    accessToken: string,
 }
