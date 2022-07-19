@@ -1,6 +1,4 @@
-import { getUser } from '@chia/lib/firebase/auth/services';
-import { onIdTokenChanged } from "firebase/auth";
-import {auth} from "@chia/lib/firebase/config";
+import { getUser, refreshToken } from '@chia/lib/firebase/auth/services';
 
 export const authMiddleware = (request: RequestInit) => {
     const user = getUser();
@@ -16,15 +14,9 @@ export const authMiddleware = (request: RequestInit) => {
 
 // @ts-ignore
 export const refreshTokenMiddleware = (response: Response<unknown>) => {
+    console.log('response', response);
     if (response.errors) {
         const error = response.errors[0];
-        if (error.extensions.code === 'invalid-jwt') {
-            onIdTokenChanged(auth, (user) => {
-                if (user) {
-                    const token = user.getIdToken();
-                    console.log('refresh token', token);
-                }
-            })
-        }
+        if (error.extensions.code === 'invalid-jwt') refreshToken().then(token => console.log('refreshToken', token))
     }
 }
