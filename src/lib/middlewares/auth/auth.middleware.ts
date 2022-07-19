@@ -18,7 +18,7 @@ export const authMiddleware = (request: RequestInit) => {
 export const refreshTokenMiddleware = (response: Response<unknown>) => {
     if (response.errors) {
         const error = response.errors[0];
-        if (error.extensions.code === 'auth/user-token-expired') {
+        if (error.extensions.code === 'invalid-jwt') {
             onIdTokenChanged(auth, (user) => {
                 if (user) {
                     const token = user.getIdToken();

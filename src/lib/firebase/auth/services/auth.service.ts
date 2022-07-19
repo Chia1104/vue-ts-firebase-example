@@ -22,14 +22,17 @@ export const getUser = (): User | null => {
     }
 }
 
-export const refreshToken = new Promise((resolve) => {
-    onIdTokenChanged(auth, (user) => {
-        if (user) {
-            const token = user.getIdToken();
-            resolve(token);
-        }
+export const refreshToken = () => {
+    return new Promise((resolve) => {
+        onIdTokenChanged(auth, (user) => {
+            if (user) {
+                console.log('onIdTokenChanged')
+                const token = user.getIdToken();
+                resolve(token);
+            }
+        })
     })
-})
+}
 
 export const register = async (email: string, password: string, c_password: string) => {
     if(password !== c_password) return null;
