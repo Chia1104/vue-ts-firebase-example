@@ -1,13 +1,10 @@
 import graphqlClient from "@chia/lib/GraphQL/graphqlClient";
 import { GET_CLOTHES, GET_CLOTHES_BY_ID, GET_CLOTHES_BY_CATEGORY, GET_MORE_CLOTHES_BY_CATEGORY } from "@chia/lib/GraphQL/clothes/queries";
-import { getAuthCreditentials, handleRefreshToken } from "@chia/lib/middlewares/auth";
 
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
     try {
-        const credentials = await handleRefreshToken();
-        const client = graphqlClient.setHeaders(credentials);
-        const products = await client.request(GET_CLOTHES, {
+        const products = await graphqlClient.request(GET_CLOTHES, {
             offset: 0,
         })
         if(!products.henry_clothes) {
@@ -24,9 +21,7 @@ export const getProductsAction = async (context: any) => {
 export const getMoreProductsAction = async (context: any, offset: number) => {
     context.commit('beginGetMoreProducts');
     try {
-        const credentials = await handleRefreshToken();
-        const client = graphqlClient.setHeaders(credentials);
-        const products = await client.request(GET_CLOTHES, {
+        const products = await graphqlClient.request(GET_CLOTHES, {
             offset: offset,
         })
         if(!products.henry_clothes) {
@@ -43,9 +38,7 @@ export const getMoreProductsAction = async (context: any, offset: number) => {
 export const getProductAction = async (context: any, { id }: {id: string}) => {
     context.commit('beginGetProduct');
     try {
-        const credentials = await handleRefreshToken();
-        const client = graphqlClient.setHeaders(credentials);
-        const product = await client.request(GET_CLOTHES_BY_ID, {
+        const product = await graphqlClient.request(GET_CLOTHES_BY_ID, {
             id: id,
         })
         if(!product.henry_clothes) {
@@ -62,9 +55,7 @@ export const getProductsByCategoryAction = async (context: any, { category }: {c
     context.commit('beginGetCategoryProducts');
     context.commit('hasMoreCategoryProducts', true);
     try {
-        const credentials = await handleRefreshToken();
-        const client = graphqlClient.setHeaders(credentials);
-        const products = await client.request(GET_CLOTHES_BY_CATEGORY, {
+        const products = await graphqlClient.request(GET_CLOTHES_BY_CATEGORY, {
             category_jsonb: category,
         })
         if(!products.henry_clothes) {
@@ -81,9 +72,7 @@ export const getProductsByCategoryAction = async (context: any, { category }: {c
 export const getMoreProductsByCategoryAction = async (context: any, { category, offset }: {category: string, offset: number}) => {
     context.commit('beginGetMoreCategoryProducts');
     try {
-        const credentials = await handleRefreshToken();
-        const client = graphqlClient.setHeaders(credentials);
-        const products = await client.request(GET_MORE_CLOTHES_BY_CATEGORY, {
+        const products = await graphqlClient.request(GET_MORE_CLOTHES_BY_CATEGORY, {
             category_jsonb: category,
             offset: offset,
         })

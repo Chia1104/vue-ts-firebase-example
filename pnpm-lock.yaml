@@ -12,7 +12,7 @@ specifiers:
   dayjs: ^1.11.3
   firebase: ^9.8.3
   graphql: ^16.5.0
-  graphql-request: ^4.3.0
+  graphql-request: next
   jsdom: ^20.0.0
   postcss: ^8.4.14
   tailwindcss: ^3.1.4
@@ -33,7 +33,7 @@ dependencies:
   dayjs: 1.11.3
   firebase: 9.9.0
   graphql: 16.5.0
-  graphql-request: 4.3.0_graphql@16.5.0
+  graphql-request: 4.4.0-next.2_graphql@16.5.0
   vue: 3.2.37
   vue-router: 4.1.2_vue@3.2.37
   vuex: 4.0.2_vue@3.2.37
@@ -1678,8 +1678,8 @@ packages:
       path-is-absolute: 1.0.1
     dev: false
 
-  /graphql-request/4.3.0_graphql@16.5.0:
-    resolution: {integrity: sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==}
+  /graphql-request/4.4.0-next.2_graphql@16.5.0:
+    resolution: {integrity: sha512-/BIVxlVVyExk9i6B28BJOfyn+iCuYVkB0COSai044krWX30UuOvQvJg/MpiEWNSb9SaVXOg4rlUePpoVHQX5Yw==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
