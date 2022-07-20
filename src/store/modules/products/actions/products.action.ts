@@ -4,7 +4,8 @@ import { GET_CLOTHES, GET_CLOTHES_BY_ID, GET_CLOTHES_BY_CATEGORY, GET_MORE_CLOTH
 export const getProductsAction = async (context: any) => {
     context.commit('beginGetProducts');
     try {
-        const products = await graphqlClient.request(GET_CLOTHES, {
+        const client = await graphqlClient();
+        const products = await client.request(GET_CLOTHES, {
             offset: 0,
         })
         if(!products.henry_clothes) {
@@ -21,7 +22,8 @@ export const getProductsAction = async (context: any) => {
 export const getMoreProductsAction = async (context: any, offset: number) => {
     context.commit('beginGetMoreProducts');
     try {
-        const products = await graphqlClient.request(GET_CLOTHES, {
+        const client = await graphqlClient();
+        const products = await client.request(GET_CLOTHES, {
             offset: offset,
         })
         if(!products.henry_clothes) {
@@ -38,7 +40,8 @@ export const getMoreProductsAction = async (context: any, offset: number) => {
 export const getProductAction = async (context: any, { id }: {id: string}) => {
     context.commit('beginGetProduct');
     try {
-        const product = await graphqlClient.request(GET_CLOTHES_BY_ID, {
+        const client = await graphqlClient();
+        const product = await client.request(GET_CLOTHES_BY_ID, {
             id: id,
         })
         if(!product.henry_clothes) {
@@ -55,7 +58,8 @@ export const getProductsByCategoryAction = async (context: any, { category }: {c
     context.commit('beginGetCategoryProducts');
     context.commit('hasMoreCategoryProducts', true);
     try {
-        const products = await graphqlClient.request(GET_CLOTHES_BY_CATEGORY, {
+        const client = await graphqlClient();
+        const products = await client.request(GET_CLOTHES_BY_CATEGORY, {
             category_jsonb: category,
         })
         if(!products.henry_clothes) {
@@ -72,7 +76,8 @@ export const getProductsByCategoryAction = async (context: any, { category }: {c
 export const getMoreProductsByCategoryAction = async (context: any, { category, offset }: {category: string, offset: number}) => {
     context.commit('beginGetMoreCategoryProducts');
     try {
-        const products = await graphqlClient.request(GET_MORE_CLOTHES_BY_CATEGORY, {
+        const client = await graphqlClient();
+        const products = await client.request(GET_MORE_CLOTHES_BY_CATEGORY, {
             category_jsonb: category,
             offset: offset,
         })

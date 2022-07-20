@@ -26,8 +26,8 @@ export const refreshToken = () => {
     return new Promise((resolve) => {
         onIdTokenChanged(auth, (user) => {
             if (user) {
-                console.log('onIdTokenChanged')
                 const token = user.getIdToken();
+                console.log('refreshToken', token);
                 resolve(token);
             }
         })

@@ -5,16 +5,25 @@ import { createClient } from 'graphql-ws';
 import { refreshToken } from "@chia/lib/firebase/auth/services";
 import { logErrorMessages } from '@vue/apollo-util'
 import { onError } from '@apollo/client/link/error'
+import { setContext } from '@apollo/client/link/context';
 
 const url = import.meta.env.VITE_GRAPHQL_API || 'http://localhost:3000/graphql'
 const ws_url = import.meta.env.VITE_GRAPHQL_WS || 'ws://localhost:3000/graphql'
 
 const httpLink = new HttpLink({
     uri: url,
-    headers: {
-        'content-type': 'application/json',
-        'x-hasura-admin-secret': import.meta.env.VITE_GRAPHQL_SECRET_KEY
-    }
+})
+
+const authLink = setContext((_, { headers }) => {
+    return refreshToken().then(token => {
+        return {
+            headers: {
+                ...headers,
+                'content-type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : ''
+            }
+        }
+    })
 })
 
 const wsLink = new GraphQLWsLink(createClient({
@@ -24,7 +33,8 @@ const wsLink = new GraphQLWsLink(createClient({
         return refreshToken().then(token => {
             return {
                 headers: {
-                    Authorization: token ? `Bearer ${token}` : ''
+                    'content-type': 'application/json',
+                    'Authorization': token ? `Bearer ${token}` : ''
                 }
             }
         })
@@ -43,8 +53,8 @@ const splitLink = split(
             definition.operation === 'subscription'
         );
     },
-    wsLink,
-    httpLink.concat(errorLink),
+    wsLink.concat(errorLink),
+    httpLink.concat(authLink).concat(errorLink)
 );
 
 const apolloClient = new ApolloClient({
