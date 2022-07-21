@@ -21,7 +21,7 @@ ENV VITE_MEASUREMENT_ID YOUR_MEASUREMENT_ID
 ENV VITE_FORMSPREE_KEY YOUR_FORMSPREE_KEY
 ENV VITE_RE_CAPTCHA_KEY YOUR_RE_CAPTCHA_KEY
 
-RUN yarn build
+RUN pnpm build
 
 FROM nginx:alpine
 COPY /docker/nginx.conf /etc/nginx/conf.d/configfile.template
