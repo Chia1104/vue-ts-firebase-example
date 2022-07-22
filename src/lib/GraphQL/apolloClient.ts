@@ -54,7 +54,7 @@ const splitLink = split(
         );
     },
     wsLink.concat(errorLink),
-    httpLink.concat(authLink).concat(errorLink)
+    authLink.concat(httpLink).concat(errorLink)
 );
 
 const apolloClient = new ApolloClient({

@@ -10,12 +10,18 @@ const LoginPage = () => import("../pages/LoginPage.vue");
 const ProfilePage = () => import("../pages/ProfilePage.vue");
 const RegisterPage = () => import("../pages/RegisterPage.vue");
 const ProductCategoryPage = () => import("../pages/ProductCategoryPage.vue");
+const Rot13Page = () => import("../pages/Rot13Page.vue");
 
 const routes = [
     {
         path: "/",
         name: 'HomePage',
         component: HomePage
+    },
+    {
+        path: "/rot13",
+        name: 'Rot13Page',
+        component: Rot13Page
     },
     {
         path: "/home",
