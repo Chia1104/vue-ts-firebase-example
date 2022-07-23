@@ -11,8 +11,8 @@ const store = createStore({
     cart: cartModule,
     auth: authModule,
     image: imageModule,
-    data: dataModule
-  }
+    data: dataModule,
+  },
 });
 
 export default store;

@@ -1,1 +1,1 @@
-export * from './data.mutation';
+export * from "./data.mutation";
