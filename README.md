@@ -51,12 +51,18 @@ Generate the .env file, and add your Firebase credentials.
 $ cp .env.example .env
 ```
 
+Install the dependencies and enable `husky`
+
+```bash
+$ pnpm install
+$ pnpm husky install
+```
+
 Runs the app in the development mode.
 
 Open http://localhost:3000 to view it in your browser.
 
 ```bash
-$ pnpm install
 $ pnpm dev
 ```
 

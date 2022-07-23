@@ -1,1 +1,1 @@
-export * from './image.action';
+export * from "./image.action";

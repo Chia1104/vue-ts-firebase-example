@@ -8,8 +8,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-watch(() => props.isOpen, (isOpen) => isOpen ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto");
-
+watch(
+  () => props.isOpen,
+  (isOpen) =>
+    isOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto")
+);
 </script>
 
 <template>

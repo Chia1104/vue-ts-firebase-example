@@ -1,1 +1,1 @@
-export * from './data.action';
+export * from "./data.action";

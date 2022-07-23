@@ -1,9 +1,9 @@
 export type DataState = {
-    categorySelected: boolean;
-    productCategory: string;
-}
+  categorySelected: boolean;
+  productCategory: string;
+};
 
 export const dataInitState: DataState = {
-    categorySelected: false,
-    productCategory: ""
-}
+  categorySelected: false,
+  productCategory: "",
+};
