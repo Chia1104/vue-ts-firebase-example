@@ -5,7 +5,7 @@ export const addProductToCartAction = (
   context: any,
   { product, qty }: { product: Product; qty: number }
 ) => {
-  let item = {
+  const item = {
     productName: product.name,
     productPrice: product.price,
     productQuantity: qty,

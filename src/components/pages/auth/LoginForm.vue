@@ -61,7 +61,9 @@ const handleLogin = () => {
       required
       autocomplete="on"
       v-model="emailModel" />
-    <label class="text-lg font-bold self-start" for="login-password">Password</label>
+    <label class="text-lg font-bold self-start" for="login-password"
+      >Password</label
+    >
     <input
       placeholder="Your password"
       type="password"
