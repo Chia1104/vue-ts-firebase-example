@@ -4,7 +4,7 @@ import {
   register,
   logout,
   updateProfile,
-} from "@chia/lib/firebase/auth/services";
+} from "@chia/helpers/firebase/auth/services";
 
 export const getUserAction = (context: any) => {
   context.commit("beginLogin");

@@ -1,4 +1,4 @@
-import type { Cart } from "@chia/utils/types/cart";
+import type { Cart } from "@chia/shared/types/cart";
 
 export type cartStateType = {
   data: Cart[];

@@ -47,11 +47,11 @@ const editName = () =>
       <AntPopover placement="bottom">
         <h1 class="pt-7 text-2xl">{{ name || "Edit Name" }}</h1>
         <template #content>
-          <form @submit.prevent="editName" class="w-full flex">
+          <form class="w-full flex" @submit.prevent="editName">
             <input
+              v-model="nameModal"
               type="text"
               class="w-full border-2 border-gray-300 rounded-lg p-1 mr-2"
-              v-model="nameModal"
               required />
             <button
               type="submit"

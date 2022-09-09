@@ -1,10 +1,10 @@
-import graphqlClient from "@chia/lib/GraphQL/graphqlClient";
+import graphqlClient from "@chia/helpers/GraphQL/graphqlClient";
 import {
   GET_CLOTHES,
   GET_CLOTHES_BY_ID,
   GET_CLOTHES_BY_CATEGORY,
   GET_MORE_CLOTHES_BY_CATEGORY,
-} from "@chia/lib/GraphQL/clothes/queries";
+} from "@chia/helpers/GraphQL/clothes/queries";
 
 export const getProductsAction = async (context: any) => {
   context.commit("beginGetProducts");

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Popover as AntPopover } from "ant-design-vue";
-import type { Cart } from "@chia/utils/types/cart";
+import type { Cart } from "@chia/shared/types/cart";
 import { defineProps } from "vue";
 import { useStore } from "vuex";
 
@@ -53,8 +53,8 @@ const removeProductFromCart = (id: string) =>
             <span>
               {{ product.productQuantity }}
               <button
-                @click="removeProductFromCart(product.productId)"
-                class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition">
+                class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition"
+                @click="removeProductFromCart(product.productId)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-4 w-4 text-red-400"
@@ -86,8 +86,8 @@ const removeProductFromCart = (id: string) =>
             <p>Remove all</p>
           </template>
           <button
-            @click="clearCart"
-            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition">
+            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition"
+            @click="clearCart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 text-red-400"

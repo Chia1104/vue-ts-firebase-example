@@ -1,4 +1,4 @@
-import { getListImageUrl } from "@chia/lib/firebase/files/services";
+import { getListImageUrl } from "@chia/helpers/firebase/files/services";
 
 export const getBannerAction = async (
   context: any,

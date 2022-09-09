@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineProps, reactive, defineAsyncComponent } from "vue";
-import type { Product } from "@chia/utils/types/product";
-import { useStore } from "vuex";
+import type { Product } from "@chia/shared/types/product";
 import LoveIcon from "@chia/components/globals/LoveIcon.vue";
 import AddProduct from "@chia/components/globals/Cart/AddProduct.vue";
 
@@ -72,7 +71,7 @@ const handleOpen = () => (localState.isOpen = true);
           </svg>
         </AddProduct>
         <LoveIcon
-          className="duration-500 ease-in-out c-bg-secondary w-[52px] h-[52px] flex justify-center items-center"
+          class-name="duration-500 ease-in-out c-bg-secondary w-[52px] h-[52px] flex justify-center items-center"
           icon-style="h-7 w-7" />
       </div>
     </div>

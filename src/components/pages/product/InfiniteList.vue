@@ -8,7 +8,7 @@ import {
   onBeforeUnmount,
 } from "vue";
 import ProductItem from "./ProductItem.vue";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 import { useStore } from "vuex";
 import { unrefElement } from "@vueuse/core";
@@ -61,10 +61,10 @@ watch(
     <div v-for="(product, index) in products">
       <ProductItem
         v-if="index + 1 === products.length"
-        :product="product"
         :ref="(el) => (lastProduct[index] = el)"
-        :key="product.id" />
-      <ProductItem v-else :product="product" :key="product.id" />
+        :key="product.id"
+        :product="product" />
+      <ProductItem v-else :key="product.id" :product="product" />
     </div>
     <ProductsLoader v-if="isLoading" />
   </div>

@@ -4,9 +4,9 @@ import {
   signOut,
   updateProfile as firebaseUpdateProfile,
 } from "firebase/auth";
-import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
+import { dataToJSON } from "@chia/helpers/firebase/auth/repositories";
 import { auth } from "../../config";
-import type { User } from "@chia/utils/types/user";
+import type { User } from "@chia/shared/types/user";
 
 export const login = async (email: string, password: string) => {
   try {

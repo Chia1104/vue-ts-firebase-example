@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 import LoveIcon from "@chia/components/globals/LoveIcon.vue";
 import AddProduct from "@chia/components/globals/Cart/AddProduct.vue";
 

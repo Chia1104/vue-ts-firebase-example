@@ -1,4 +1,4 @@
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 
 export type productStateType = {
   products: {

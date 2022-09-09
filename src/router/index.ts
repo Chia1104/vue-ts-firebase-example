@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { auth } from "@chia/lib/firebase/config";
+import { auth } from "@chia/helpers/firebase/config";
 
 const HomePage = () => import("../pages/HomePage.vue");
 const NotFoundPage = () => import("../pages/exceptions/404.vue");

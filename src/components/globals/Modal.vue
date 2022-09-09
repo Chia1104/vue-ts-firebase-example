@@ -20,7 +20,7 @@ watch(
 <template>
   <teleport to="body">
     <Transition>
-      <div class="modal" v-if="isOpen" @click="handleClose">
+      <div v-if="isOpen" class="modal" @click="handleClose">
         <slot></slot>
       </div>
     </Transition>

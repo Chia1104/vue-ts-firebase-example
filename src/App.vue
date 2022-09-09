@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import NavMenu from "@chia/components/globals/NavMenu.vue";
 import Footer from "@chia/components/globals/Footer.vue";
-import { auth } from "@chia/lib/firebase/config";
+import { auth } from "@chia/helpers/firebase/config";
 import { useStore } from "vuex";
 import { watchEffect } from "vue";
-import { dataToJSON } from "@chia/lib/firebase/auth/repositories";
+import { dataToJSON } from "@chia/helpers/firebase/auth/repositories";
 
 const store = useStore();
 
 const firebaseUser = () =>
-  auth.onAuthStateChanged((user) => {
+  auth.onAuthStateChanged((user: any) => {
     if (user) store.commit("loginSuccess", dataToJSON(user));
     else store.commit("loginError", "You are not logged in");
   });

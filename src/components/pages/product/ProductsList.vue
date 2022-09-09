@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, withDefaults } from "vue";
 import ProductItem from "./ProductItem.vue";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 import ProductsLoader from "./ProductsLoader.vue";
 import { useStore } from "vuex";
 

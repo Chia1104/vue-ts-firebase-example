@@ -1,4 +1,4 @@
-import type { User } from "@chia/utils/types/user";
+import type { User } from "@chia/shared/types/user";
 import type { AuthState } from "../states";
 
 export const beginLogin = (state: AuthState) => {

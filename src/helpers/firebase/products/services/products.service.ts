@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { firestore } from "../../config";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 import { dataToJSON } from "../repositories";
 
 export const addProduct = async (product: Product) => {

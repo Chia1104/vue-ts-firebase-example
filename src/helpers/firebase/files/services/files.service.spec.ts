@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getListImageUrl } from "@chia/lib/firebase/files/services/files.service";
+import { getListImageUrl } from "@chia/helpers/firebase/files/services/files.service";
 
 describe("getListImageUrl", () => {
   it("testing", async function () {

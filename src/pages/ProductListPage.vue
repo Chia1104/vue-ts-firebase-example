@@ -18,7 +18,7 @@ const onMoreData = () =>
 <template>
   <div class="c-container">
     <main class="main w-full text-center">
-      <CategoryList :cascaderProps="clotheCategory" class="mb-20" />
+      <CategoryList :cascader-props="clotheCategory" class="mb-20" />
       <InfiniteList
         :is-loading="products.isLoading"
         :products="products.data"

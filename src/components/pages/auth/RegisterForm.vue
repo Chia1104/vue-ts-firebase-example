@@ -50,47 +50,47 @@ const handleRegister = () => {
 
 <template>
   <form
+    id="register-form"
     class="w-full c-bg-secondary mx-auto max-w-lg px-10 flex flex-col items-center justify-center rounded-2xl py-14 shadow-2xl overflow-hidden"
     @submit.prevent="handleRegister"
-    @change="validate"
-    id="register-form">
+    @change="validate">
     <LoadingSpinner v-if="auth.isLoading" />
     <label class="text-lg font-bold self-start" for="register-email"
       >Email</label
     >
     <input
+      id="register-email"
+      v-model="emailModel"
       placeholder="Your email"
       type="email"
       name="email"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="register-email"
       required
-      autocomplete="on"
-      v-model="emailModel" />
+      autocomplete="on" />
     <label class="text-lg font-bold self-start" for="register-password"
       >Password</label
     >
     <input
+      id="register-password"
+      v-model="passwordModel"
       placeholder="Your password"
       type="password"
       name="password"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="register-password"
       required
-      autocomplete="on"
-      v-model="passwordModel" />
+      autocomplete="on" />
     <label class="text-lg font-bold self-start" for="register-cpassword"
       >Confirm Password</label
     >
     <input
+      id="register-cpassword"
+      v-model="c_passwordModel"
       placeholder="Your password"
       type="password"
       name="c_password"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="register-cpassword"
       required
-      autocomplete="on"
-      v-model="c_passwordModel" />
+      autocomplete="on" />
     <button
       type="submit"
       class="group relative inline-flex transition ease-in-out rounded mt-7 self-center"

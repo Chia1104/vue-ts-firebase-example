@@ -1,4 +1,4 @@
-import type { Cart } from "@chia/utils/types/cart";
+import type { Cart } from "@chia/shared/types/cart";
 import type { cartStateType } from "@chia/store/modules/cart/states";
 
 export const addProductToCart = (state: cartStateType, payload: Cart) => {

@@ -1,5 +1,5 @@
-import type { Product } from "@chia/utils/types/product";
-import type { Cart } from "@chia/utils/types/cart";
+import type { Product } from "@chia/shared/types/product";
+import type { Cart } from "@chia/shared/types/cart";
 
 export const addProductToCartAction = (
   context: any,

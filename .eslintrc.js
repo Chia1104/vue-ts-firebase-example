@@ -22,16 +22,12 @@ module.exports = {
     sourceType: "module",
     requireConfigFile: false,
   },
+  parser: "vue-eslint-parser",
   plugins: ["vue", "@typescript-eslint", "prettier"],
-  globals: {
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly",
-  },
   rules: {
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
+    "vue/multi-word-component-names": "off",
   },
 };

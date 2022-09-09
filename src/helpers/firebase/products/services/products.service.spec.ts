@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getProduct, getProductsByCategory } from "./products.service";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 
 describe("getProduct", () => {
   it("should return a product", async () => {

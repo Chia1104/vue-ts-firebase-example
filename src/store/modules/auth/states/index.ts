@@ -1,4 +1,4 @@
-import type { User } from "@chia/utils/types/user";
+import type { User } from "@chia/shared/types/user";
 
 export type AuthState = {
   isAuthenticated: boolean;

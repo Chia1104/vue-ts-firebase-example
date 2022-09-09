@@ -27,7 +27,7 @@ const logout = () =>
     :closable="false"
     :visible="visible"
     @close="onClose">
-    <div class="w-full flex flex-col gap-2 h-full" v-if="auth.isAuthenticated">
+    <div v-if="auth.isAuthenticated" class="w-full flex flex-col gap-2 h-full">
       <router-link
         class="p-1 py-2 rounded-lg hover:bg-[#E6E6FA] transition hover:text-dark flex gap-1"
         to="/profile">
@@ -107,7 +107,7 @@ const logout = () =>
         </button>
       </div>
     </div>
-    <div class="w-full flex flex-col gap-2 h-full" v-else>
+    <div v-else class="w-full flex flex-col gap-2 h-full">
       <router-link
         class="p-1 py-2 rounded-lg hover:bg-[#E6E6FA] transition hover:text-dark flex gap-1"
         to="/login">

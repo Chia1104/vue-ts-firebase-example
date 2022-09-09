@@ -46,33 +46,33 @@ const handleLogin = () => {
 
 <template>
   <form
+    id="login-form"
     class="w-full c-bg-secondary mx-auto max-w-lg px-10 flex flex-col items-center justify-center rounded-2xl py-14 shadow-2xl overflow-hidden"
     @submit.prevent="handleLogin"
-    @change="validate"
-    id="login-form">
+    @change="validate">
     <LoadingSpinner v-if="auth.isLoading" />
     <label class="text-lg font-bold self-start" for="login-email">Email</label>
     <input
+      id="login-email"
+      v-model="emailModel"
       placeholder="Your email"
       type="email"
       name="email"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="login-email"
       required
-      autocomplete="on"
-      v-model="emailModel" />
+      autocomplete="on" />
     <label class="text-lg font-bold self-start" for="login-password"
       >Password</label
     >
     <input
+      id="login-password"
+      v-model="passwordModel"
       placeholder="Your password"
       type="password"
       name="password"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="login-password"
       required
-      autocomplete="on"
-      v-model="passwordModel" />
+      autocomplete="on" />
     <button
       type="submit"
       class="group relative inline-flex transition ease-in-out rounded mt-7 self-center"

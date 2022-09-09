@@ -19,14 +19,14 @@ const activeDrawer = () => {
     <div class="flex container w-[100%]">
       <div class="flex items-center w-[70%] justify-start">
         <router-link
+          v-once
           to="/"
-          class="subtitle ml-3 hover:c-text-green-to-purple transition ease-in-out"
-          v-once>
+          class="subtitle ml-3 hover:c-text-green-to-purple transition ease-in-out">
           VueShop
         </router-link>
       </div>
       <div class="flex items-center w-[30%] justify-end mr-3">
-        <button @click="activeDrawer" class="flex c-link mr-4 py-3 text-dark">
+        <button class="flex c-link mr-4 py-3 text-dark" @click="activeDrawer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

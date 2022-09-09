@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, defineProps, watchEffect, computed } from "vue";
 import { Popover as AntPopover } from "ant-design-vue";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 import { useStore } from "vuex";
 
 interface Props {
@@ -39,10 +39,10 @@ watchEffect(() => {
       <div class="flex flex-col">
         <div class="flex justify-center items-center">
           <button
-            @click="removeQty"
             class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition mx-1"
             :disabled="localState.disabled"
-            :class="localState.disabled && 'text-gray-300'">
+            :class="localState.disabled && 'text-gray-300'"
+            @click="removeQty">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -58,8 +58,8 @@ watchEffect(() => {
           </button>
           <p>{{ localState.count }}</p>
           <button
-            @click="addQty"
-            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition mx-1">
+            class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition mx-1"
+            @click="addQty">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -75,10 +75,10 @@ watchEffect(() => {
           </button>
         </div>
         <button
-          @click="addProductToCart({ product, qty: localState.count })"
           class="rounded-full p-1 shadow-2xl hover:bg-[#E6E6FA] transition self-center"
           :disabled="localState.disabled"
-          :class="localState.disabled && 'text-gray-300'">
+          :class="localState.disabled && 'text-gray-300'"
+          @click="addProductToCart({ product, qty: localState.count })">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

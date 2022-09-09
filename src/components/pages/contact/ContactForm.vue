@@ -64,34 +64,34 @@ const handleSubmit = async () => {
 <template>
   <form
     id="contact-form"
+    ref="form"
     class="w-full max-w-lg flex flex-col"
-    @submit.prevent="handleSubmit"
-    ref="form">
+    @submit.prevent="handleSubmit">
     <input
+      id="contact-name"
+      v-model="nameModel"
       placeholder="Your name"
       type="text"
       name="name"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="contact-name"
       required
-      autocomplete="on"
-      v-model="nameModel" />
+      autocomplete="on" />
     <input
+      id="contact-email"
+      v-model="emailModel"
       placeholder="Your email"
       type="email"
       name="email"
       class="w-full p-3 border border-gray-300 rounded-lg my-5"
-      id="contact-email"
       required
-      autocomplete="on"
-      v-model="emailModel" />
+      autocomplete="on" />
     <textarea
+      id="contact-message"
+      v-model="messageModel"
       placeholder="Your message"
       name="message"
       class="w-full p-3 border border-gray-300 rounded-lg my-5 min-h-[130px]"
-      id="contact-message"
-      required
-      v-model="messageModel" />
+      required />
     <component
       is="script"
       src="https://www.google.com/recaptcha/api.js"

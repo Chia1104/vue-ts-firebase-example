@@ -27,8 +27,8 @@ const router = useRouter();
       </h1>
       <RegisterForm />
       <button
-        @click="router.push('/login')"
-        class="group relative inline-flex transition ease-in-out rounded mt-7 self-center hover:bg-secondary hover:dark:bg-primary">
+        class="group relative inline-flex transition ease-in-out rounded mt-7 self-center hover:bg-secondary hover:dark:bg-primary"
+        @click="router.push('/login')">
         <span
           class="c-button-secondary transform text-base group-hover:-translate-x-1 group-hover:-translate-y-1">
           Login

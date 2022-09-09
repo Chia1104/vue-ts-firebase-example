@@ -1,4 +1,4 @@
-import { User } from "@chia/utils/types/user";
+import { User } from "@chia/shared/types/user";
 
 export const dataToJSON = (currentUser: any) => {
   return {

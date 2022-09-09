@@ -1,5 +1,5 @@
 import type { productStateType } from "@chia/store/modules/products/states";
-import type { Product } from "@chia/utils/types/product";
+import type { Product } from "@chia/shared/types/product";
 
 export const beginGetProducts = (state: productStateType) => {
   state.products.isLoading = true;
